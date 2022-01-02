@@ -1,0 +1,678 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+/* ----------------general */
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+.contatiner {
+    width: 99%;
+}
+
+.textMenuBottom {
+    font-size: 10px;
+}
+
+.navbar-expand .navbar-nav .nav-link {
+    color: #C8CBCA;
+}
+
+.active .nav-link {
+    color: #0F663D !important;
+}
+
+.active .svgMenuBottom {
+    fill: #1DBF73;
+}
+
+.active .inner-svgMenuBottom {
+    fill: #0F663D;
+}
+
+.mb-25 {
+    margin-bottom: 25px;
+}
+
+.mb-50 {
+    margin-bottom: 50px;
+}
+
+.mb-100 {
+    margin-bottom: 100px;
+}
+
+.mb-150 {
+    margin-bottom: 150px;
+}
+
+.mt-35 {
+    margin-top: 35px;
+}
+
+.pl-5 {
+    padding-left: 5px;
+}
+
+.pl-15 {
+    padding-left: 15px;
+}
+
+.pl-25 {
+    padding-left: 25px;
+}
+
+
+.pr-5 {
+    padding-right: 5px;
+}
+
+.pr-15 {
+    padding-right: 15px;
+}
+
+.pr-25 {
+    padding-right: 25px;
+}
+
+.r-pl {
+    padding-left: 65px;
+}
+/* ----------------/general */
+
+/* ----------------animasi donasi bebas */
+.containerDonasiBebas {
+    /* width: 200px;
+    height: 100%; */
+    margin: 0 auto 0;
+    -webkit-perspective: 1000;
+    -webkit-backface-visibility: hidden;
+    background: transparent;
+  }
+  
+  .pulse-button {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    margin-left: -50px;
+    margin-top: -50px;
+    display: block;
+    width: 100px;
+    height: 100px;
+    font-size: 1.3em;
+    font-weight: light;
+    font-family: 'Trebuchet MS', sans-serif;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 100px;
+    letter-spacing: -1px;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    background: #1DBF73;
+    cursor: pointer;
+    box-shadow: 0 0 0 0 #1DBF73;
+    -webkit-animation: pulse 1.5s infinite;
+  }
+  
+  .pulse-button:hover {
+    -webkit-animation: none;
+  }
+  
+  @-webkit-keyframes pulse {
+    0% {
+      -moz-transform: scale(0.9);
+      -ms-transform: scale(0.9);
+      -webkit-transform: scale(0.9);
+      transform: scale(0.9);
+    }
+    70% {
+      -moz-transform: scale(1);
+      -ms-transform: scale(1);
+      -webkit-transform: scale(1);
+      transform: scale(1);
+      box-shadow: 0 0 0 50px rgba(90, 153, 212, 0);
+    }
+    100% {
+      -moz-transform: scale(0.9);
+      -ms-transform: scale(0.9);
+      -webkit-transform: scale(0.9);
+      transform: scale(0.9);
+      box-shadow: 0 0 0 0 rgba(90, 153, 212, 0);
+    }
+  }
+/* ----------------/animasi donasi bebas */
+
+/* ----------------home */
+.input-group {
+    width: 95%;
+}
+
+#search-top {
+    /* padding-left: 9%; */
+    padding-left: 30px;
+}
+
+.input-group-append .search-icon {
+    position: absolute;
+    /* margin-left: -86%; */
+    left: 55px;
+    margin-top: 10px;
+}
+
+.category a {
+    text-decoration: none;
+    color: #000000;
+}
+
+.CampaignMendesak .judul {
+    font-weight: bolder;
+    color: #000000;
+    padding-left: 0;
+}
+
+.footer-CampaignMendesak {
+    clear: both;
+    font-size: 11px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.footer-CampaignMendesak .text-start{
+    float: left;
+    font-size: smaller;
+}
+
+.footer-CampaignMendesak .text-end{
+    float: right;
+    font-size: smaller;
+}
+
+.p-3px {
+    padding: 3px;
+}
+
+.CampaignMendesak .card {
+    border-radius: 15px;
+    /* box-shadow: 0px 2px 4px -2px rgba(24, 39, 75, 0.12), 0px 4px 4px -2px rgba(24, 39, 75, 0.08); */
+}
+
+.judulCampaignMendesak {
+    font-weight: bolder;
+}
+
+.CampaignMendesak img {
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    padding: 0;
+}
+
+.CampaignMendesak .jumlahDonasi {
+    color: #1DBF73;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 14px;
+}
+
+.CampaignMendesak p {
+    color: #4F4F4F;
+    font-size: 11px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+}
+
+.judulCampaignMendesak, .padding-progressbar {
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: smaller;
+}
+
+.wakaf {
+    color: #FFFFFF;
+    background: linear-gradient(78.12deg, #1DBF73 0%, rgba(29, 191, 115, 0.4) 100%);
+}
+
+.judulh6 {
+    font-size: 0.8rem;
+}
+
+.wrapLihatSemua {
+    margin-top: -47px;
+    position: absolute;
+    /* width: 32vw; */
+    width: 95vw;
+}
+
+.lihatSemuaCampaign {
+    position: relative;
+    color: #1DBF73;
+    text-decoration: none;
+    /* margin-left: 75%; */
+    margin-left: 93%;
+    font-size: 0.8rem;
+}
+
+.lihatSemuaCampaign:hover {
+    color: #1DBF73;
+}
+
+.scrolling-wrapper {
+    overflow-x: auto;
+}
+/* ----------------/home */
+
+
+/* ----------------daftar */
+.formDaftar label {
+    font-size: 12px;
+}
+/* ----------------/daftar */
+
+
+/* ----------------Detail  */
+.cardDetail i{
+    color: #1DBF73;
+}
+
+.terkumpulTarget {
+    clear: both;
+    margin-top: 20px;
+    font-size: 12px;
+}
+
+.terkumpulTarget .text-start{
+    float: left;
+}
+
+.terkumpulTarget .text-end{
+    float: right;
+}
+
+.jumlah {
+    font-size: 16px;
+    color: #1DBF73;
+}
+
+.detailBack {
+    position: absolute;
+    font-size: 30px;
+    padding-top: 68px;
+    padding-left: 24px;
+}
+
+.detailBack i {
+    color: #FFFFFF;
+}
+
+.nav-tabs {
+    clear: left;
+}
+
+.nav-tabs .nav-link {
+    border: none;
+    color: #C8CBCA;
+    /* font-size: 14px; */
+    font-size: 0.8rem;
+}
+
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+    border-bottom: 2px solid #1DBF73; 
+    color: #4F4F4F;
+}
+
+.tab-content {
+    font-size: 12px;
+}
+
+ul.timeline {
+    list-style-type: none;
+    position: relative;
+}
+ul.timeline:before {
+    content: ' ';
+    background: #1DBF73;
+    display: inline-block;
+    position: absolute;
+    left: 29px;
+    width: 2px;
+    height: 100%;
+    z-index: 400;
+}
+ul.timeline > li {
+    margin: 20px 0;
+    padding-left: 20px;
+}
+ul.timeline > li:before {
+    content: ' ';
+    background: white;
+    display: inline-block;
+    position: absolute;
+    border-radius: 50%;
+    border: 3px solid #1DBF73;
+    left: 20px;
+    width: 20px;
+    height: 20px;
+    z-index: 400;
+}
+
+ul.timeline > li > i {
+    position: absolute;
+    margin-left: -30px;
+    margin-top: -1px;
+    font-size: 16px;
+    z-index: 401;
+}
+
+ul.timeline > li > a {
+    font-weight: bolder;
+    color: #4F4F4F;
+    text-decoration: none;
+}
+
+.testimoniDonatur {
+    padding-top: 25px;
+}
+
+#Donatur .float-start {
+    margin-left: 10px;
+}
+
+#Donatur .float-end {
+    font-weight: bolder;
+    color: #1DBF73;
+}
+
+.lihatSemuaDonatur {
+    text-decoration: none;
+    color: #1DBF73;
+}
+/* ----------------/Detail */
+
+/* ----------------Detail Donatur */
+.detailBackDonatur {
+    font-size: 30px;
+    float: left;
+}
+
+.detailBackDonatur i {
+    color: #000000;
+}
+
+.textDonatur {
+    line-height: 3;
+}
+/* ----------------/Detail Donatur */
+
+/* ----------------campaign list */
+.navbar-brand .arrow-left-short-icon {
+    font-size: 30px;
+}
+
+.search-campaign .search-icon {
+    position: absolute;
+    /* margin-left: -86%; */
+    left: 60px;
+    margin-top: 15px;
+}
+
+#search-campaign {
+    /* padding-left: 9%; */
+    padding-left: 40px;
+}
+
+.cardDetail {
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+.card-img-CampaignList {
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+/* ----------------/campaign list */
+
+/* ----------------Detail Donasi */
+.pilihMetode {
+    text-decoration: none;
+    position: absolute;
+    margin-top: -52px;
+    /* margin-left: 390px; */
+    right: 55px;
+    color: #1DBF73;
+    font-size: 12px;
+}
+
+.anonim {
+    clear: both;
+    margin-top: 20px;
+}
+
+.anonim .text-start{
+    float: left;
+}
+
+.anonim .text-end{
+    float: right;
+}
+
+.pilihMetodePembayaran {
+    margin-top: 15px;
+}
+
+.bankTransfer {
+    font-size: 14px;
+}
+
+.pembayaranMelalui {
+    font-size: 12px;
+}
+
+.salin {
+    text-decoration: none;
+    position: absolute;
+    margin-top: -60px;
+    /* margin-left: 375px; */
+    right: 41px;
+    color: #FFFFFF;
+    font-size: 12px;
+}
+
+.alert-success i {
+    float: left;
+    margin-top: -13px;
+}
+
+.alert-success p{
+    float: left;
+    margin-top: -10px;
+    margin-left: 5px;
+    font-size: 11px;
+}
+
+.tataCaraPembayaran {
+    text-decoration: none;
+    color: #1DBF73;
+}
+/* ----------------Detail Donasi */
+
+
+/* ----------------profile */
+.profile {
+    background: #1DBF73;
+    height: 175px;
+}
+
+.profile img {
+    margin-left: 24px;
+    margin-right: 15px;
+    margin-top: 35px;
+}
+
+.profile span {
+    margin-top: 49px;
+    color: #FFFFFF;
+}
+
+.statusDonatur {
+    font-size: 12px;
+}
+
+.wrapSaldo {
+    /* width: 410px; */
+    z-index: 2;
+    margin-top: -35px;
+}
+
+.saldo {
+    background: #FFFFFF;
+    height: 70px;
+    border-radius: 5px;
+    box-shadow: 1px 1px #888888;
+}
+
+.saldoText {
+    font-size: 12px;
+    margin-left: 15px;
+    color: #1DBF73;
+}
+
+.jumlahSaldo {
+    font-size: 18px;
+    margin-left: 15px;
+}
+
+.gopayLogo {
+    margin-left: 10px;
+}
+
+.saldo .btn {
+    float: right;
+    margin-right: 15px;
+    margin-top: -15px;
+}
+
+.menuProfile {
+    margin-top: 10px;
+}
+
+.menuProfile ul li {
+    list-style: none;
+    margin-bottom: 10px;
+}
+
+.menuProfile ul li a {
+    text-decoration: none;
+    color: #4F4F4F;
+}
+/* ----------------/profile */
+
+
+/* ----------------galangDana */
+.galangDanaText {
+    margin-top: 15px;
+}
+
+.item .item-content {
+    padding: 30px 35px
+}
+
+.image-upload {
+    width: 150px;
+    height: 150px;
+    border: 1px dashed #1DBF73;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    position: relative;
+    text-align: center;
+    background: #FFFFFF;
+    color: #1DBF73;
+    overflow: hidden
+}
+
+.item-wrapper form img {
+    margin-bottom: 20px;
+    width: auto;
+    height: auto;
+    max-height: 400px;
+    width: auto;
+    border-radius: 5px;
+    overflow: hidden
+}
+
+.image-upload img {
+    height: 100% !important;
+    width: auto !important;
+    border-radius: 0px;
+    margin: 0 auto
+}
+
+.image-upload i {
+    font-size: 4em;
+    color: #1DBF73;
+}
+
+.image-upload input {
+    cursor: pointer;
+    opacity: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 10;
+    position: absolute;
+    top: 0;
+    left: 0
+}
+
+.item-wrapper input {
+    height: 43px;
+    line-height: 43px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 20px
+}
+
+.tambahText {
+    margin-top: -25px;
+}
+/* ----------------/galangDana */
+
+
+.contentResponsive {
+    flex-wrap: wrap;
+    overflow-x: unset;
+}
+
+@media screen and (max-width: 768px) {
+    .contentResponsive {
+        flex-wrap: nowrap!important;
+        overflow-x: auto;
+    }
+
+    .r-pl {
+        padding-left: 25px;
+    }
+
+    .wrapLihatSemua {
+        width: 87vw;
+    }
+
+    .lihatSemuaCampaign {
+        margin-left: 75%;
+    }
+
+    .alert-success p {
+        font-size: 8px;
+        line-height: 3;
+    }
+
+    .wrapSaldo {
+        width: 410px;
+    }
+
+    .pilihMetode {
+        right: 40px;
+    }
+
+    .salin {
+        right: 31px;
+    }
+}

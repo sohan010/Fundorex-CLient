@@ -1,0 +1,15 @@
+/@core/node_modules
+/@core/public/hot
+/@core/public/storage
+/@core/storage/*.key
+/@core/vendor
+/@core/.env
+/@core/.env.backup
+/@core/.phpunit.result.cache
+/@core/docker-compose.override.yml
+/@core/Homestead.json
+/@core/Homestead.yaml
+/@core/npm-debug.log
+/@core/yarn-error.log
+/.idea
+/.vscode
