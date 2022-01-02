@@ -750,6 +750,15 @@ Route::prefix('admin-home')->middleware(['setlang:backend','adminglobalVariable'
         Route::post('/mega-menu', 'MenuController@mega_menu_item_select_markup')->name('admin.mega.menu.item.select.markup');
     });
 
+    //GENERAL MENU MANAGE
+    Route::group(['prefix'=>'menu','namespace'=>'Admin'],function() {
+        Route::get('/', 'GeneralMenuController@index')->name('admin.menu');
+        Route::post('/new-menu', 'GeneralMenuController@store_new_menu')->name('admin.menu.new');
+        Route::get('/edit/{id}', 'GeneralMenuController@edit_menu')->name('admin.menu.edit');
+        Route::post('/update/{id}', 'GeneralMenuController@update_menu')->name('admin.menu.update');
+        Route::post('/delete/{id}', 'GeneralMenuController@delete_menu')->name('admin.menu.delete');
+    });
+
 
     //404 page manage
     Route::get('404-page-manage', 'Admin\Error404PageManage@error_404_page_settings')->name('admin.404.page.settings');

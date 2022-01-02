@@ -82,6 +82,7 @@ class CausesController extends Controller
                         }
                     }
                     return $action;
+
                 })
                 ->rawColumns(['action','checkbox','image','info'])
                 ->make(true);
@@ -489,6 +490,9 @@ class CausesController extends Controller
 
             'donation_social_icons_show_hide',
             'donation_recent_donors_show_hide',
+
+            'donation_single_urgent_donation_text',
+            'donation_single_popular_donation_text',
         ];
 
         foreach ($fields as $field) {

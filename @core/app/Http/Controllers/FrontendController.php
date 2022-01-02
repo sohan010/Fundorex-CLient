@@ -57,49 +57,12 @@ class FrontendController extends Controller
 
     public function index()
     {
-       $home_page_variant = get_static_option('home_page_variant');
+        $home_page_variant = get_static_option('home_page_variant');
         $all_header_slider = HeaderSlider::all();
-        $all_counterup = Counterup::all();
-        $all_testimonial = Testimonial::where(['status' => 'publish'])->orderBy('id', 'desc')->get();
-        $all_team_members = TeamMember::orderBy('id', 'desc')->take(get_static_option('home_page_01_team_member_items'))->get();
 
-
-        $feature_cause = Cause::where(['status' => 'publish','featured' => 'on'])->inRandomOrder()->get();
+        $urgent_cause = Cause::where(['status' => 'publish','emmergency' => 'on'])->inRandomOrder()->get();
+        $featured_causes = Cause::where(['status' => 'publish','featured' => 'on'])->inRandomOrder()->get();
         $all_donation_category = CauseCategory::where(['status' => 'publish'])->get();
-
-        $all_recent_events = Events::select('title','date','content','time','cost','image','slug','category_id','venue_location','id')->where(['status' => 'publish'])
-            ->orderBY('id','desc');
-       $all_recent_donation = Cause::select('title','amount','cause_content','raised','image','slug','categories_id','excerpt','featured','id')->where(['status' => 'publish'])
-            ->orderBY('id','desc');
-        $all_blog = Blog::where([ 'status' => 'publish'])->orderBy('id', 'desc');
-        $all_success_stories = SuccessStory::where('status','publish')->orderBy('id', 'desc');
-
-            if(in_array($home_page_variant,['04'])) {
-                $events_passing_homes = $all_recent_events->take(get_static_option('home_page_04_events_area_item_show'))->get();
-                $donations_passing_homes = $all_recent_donation->take(get_static_option('home_page_04_recent_causes_area_item_show'))->get();
-                $blogs_passing_homes = $all_blog->take(get_static_option('home_page_04_recent_blog_area_item_show'))->get();
-                $success_stories_passing_homes = $all_success_stories->take(get_static_option('home_page_04_success_story_area_item_show'))->get();
-            }else{
-             $events_passing_homes = $all_recent_events->take(get_static_option('home_page_01_latest_event_items'))->get();
-             $donations_passing_homes = $all_recent_donation->take(get_static_option('home_page_01_latest_cause_items'))->get();
-             $blogs_passing_homes = $all_blog->take(get_static_option('home_page_01_latest_news_items'))->get();
-             $success_stories_passing_homes = $all_success_stories->take(get_static_option('home_page_04_success_story_area_item_show'))->get();
-
-            }
-
-
-            if(in_array($home_page_variant,['05'])) {
-                $success_stories_passing_homes = $all_success_stories->take(get_static_option('home_page_05_success_story_area_item_show'))->get();
-                 $donations_passing_homes = $all_recent_donation->take(get_static_option('home_page_05_recent_causes_area_item_show'))->get();
-                $events_passing_homes = $all_recent_events->take(get_static_option('home_page_05_events_area_item_show'))->get();
-                $blogs_passing_homes = $all_blog->take(get_static_option('home_page_05_recent_blog_area_item_show'))->get();
-            }
-
-        if(in_array($home_page_variant,['06'])) {
-            $success_stories_passing_homes = $all_success_stories->take(get_static_option('home_page_06_success_story_area_item_show'))->get();
-            $events_passing_homes = $all_recent_events->take(get_static_option('home_page_06_events_area_item_show'))->get();
-             $donations_passing_homes = $all_recent_donation->take(get_static_option('home_page_06_recent_causes_area_item_show'))->get();
-        }
 
         //make a function to call all static option by home page
         $static_field_data = StaticOption::whereIn('option_name',HomePageStaticSettings::get_home_field(get_static_option('home_page_variant')))->get()->mapWithKeys(function ($item) {
@@ -108,19 +71,12 @@ class FrontendController extends Controller
 
         $all_client_area = ClientArea::all();
 
-
         return view('frontend.frontend-home')->with([
             'all_header_slider' => $all_header_slider,
-            'all_counterup' => $all_counterup,
-            'all_testimonial' => $all_testimonial,
-            'all_blog' => $blogs_passing_homes,
-            'all_team_members' => $all_team_members,
             'static_field_data' => $static_field_data,
             'all_donation_category' => $all_donation_category,
-            'all_recent_donation' => $donations_passing_homes,
-            'all_recent_events' => $events_passing_homes,
-            'feature_cause' => $feature_cause,
-            'all_success_stories' => $success_stories_passing_homes,
+            'urgent_cause' => $urgent_cause,
+            'featured_causes' => $featured_causes,
             'all_client_area' => $all_client_area,
         ]);
     }
@@ -154,31 +110,6 @@ class FrontendController extends Controller
         $all_blog = Blog::where([ 'status' => 'publish'])->orderBy('id', 'desc');
         $all_success_stories = SuccessStory::where('status','publish')->orderBy('id', 'desc');
 
-        if(in_array($home_page_variant,['04'])){
-            $events_passing_homes = $all_recent_events->take(get_static_option('home_page_04_events_area_item_show'))->get();
-            $donations_passing_homes = $all_recent_donation->take(get_static_option('home_page_04_recent_causes_area_item_show'))->get();
-            $blogs_passing_homes = $all_blog->take(get_static_option('home_page_04_recent_blog_area_item_show'))->get();
-            $success_stories_passing_homes = $all_success_stories->take(get_static_option('home_page_04_success_story_area_item_show'))->get();
-        }else{
-            $events_passing_homes = $all_recent_events->take(get_static_option('home_page_01_latest_event_items'))->get();
-            $donations_passing_homes = $all_recent_donation->take(get_static_option('home_page_01_latest_cause_items'))->get();
-            $blogs_passing_homes = $all_blog->take(get_static_option('home_page_01_latest_news_items'))->get();
-            $success_stories_passing_homes = $all_success_stories->take(get_static_option('home_page_04_success_story_area_item_show'))->get();
-        }
-
-        if(in_array($home_page_variant,['05'])) {
-            $success_stories_passing_homes = $all_success_stories->take(get_static_option('home_page_05_success_story_area_item_show'))->get();
-            $events_passing_homes = $all_recent_events->take(get_static_option('home_page_05_events_area_item_show'))->get();
-            $blogs_passing_homes = $all_blog->take(get_static_option('home_page_05_recent_blog_area_item_show'))->get();
-            $donations_passing_homes = $all_recent_donation->take(get_static_option('home_page_05_recent_causes_area_item_show'))->get();
-        }
-
-
-        if(in_array($home_page_variant,['06'])) {
-            $success_stories_passing_homes = $all_success_stories->take(get_static_option('home_page_06_success_story_area_item_show'))->get();
-            $events_passing_homes = $all_recent_events->take(get_static_option('home_page_06_events_area_item_show'))->get();
-             $donations_passing_homes = $all_recent_donation->take(get_static_option('home_page_06_recent_causes_area_item_show'))->get();
-        }
 
         //make a function to call all static option by home page
         $static_field_data = StaticOption::whereIn('option_name',HomePageStaticSettings::get_home_field($id))->get()->mapWithKeys(function ($item) {
@@ -191,15 +122,12 @@ class FrontendController extends Controller
             'all_header_slider' => $all_header_slider,
             'all_counterup' => $all_counterup,
             'all_testimonial' => $all_testimonial,
-            'all_blog' => $blogs_passing_homes,
             'all_team_members' => $all_team_members,
             'static_field_data' => $static_field_data,
             'all_donation_category' => $all_donation_category,
-            'all_recent_donation' => $donations_passing_homes,
-            'all_recent_events' => $events_passing_homes,
             'feature_cause' => $feature_cause,
             'home_page' => $id,
-            'all_success_stories' => $success_stories_passing_homes,
+
             'all_client_area' => $all_client_area,
         ]);
     }

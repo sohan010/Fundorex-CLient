@@ -94,6 +94,14 @@
                                 <input type="text" name="donation_single_recent_donation_text"  class="form-control" value="{{get_static_option('donation_single_recent_donation_text')}}">
                             </div>
                             <div class="form-group">
+                                <label for="donation_single_urgent_donation_text">{{__('Urgent Donation Title')}}</label>
+                                <input type="text" name="donation_single_urgent_donation_text"  class="form-control" value="{{get_static_option('donation_single_urgent_donation_text')}}">
+                            </div>
+                            <div class="form-group">
+                                <label for="donation_single_popular_donation_text">{{__('Popular Donation Title')}}</label>
+                                <input type="text" name="donation_single_popular_donation_text"  class="form-control" value="{{get_static_option('donation_single_popular_donation_text')}}">
+                            </div>
+                            <div class="form-group">
                                 <label for="donation_single_faq_title">{{__('Donation Page Faq Title')}}</label>
                                 <input type="text" name="donation_single_faq_title"  class="form-control" value="{{get_static_option('donation_single_faq_title')}}">
                             </div>

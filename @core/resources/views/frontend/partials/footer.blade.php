@@ -34,7 +34,10 @@
 @endif
 
 <!-- load all script -->
+<script src="{{asset('assets/frontend/js/jquery-3.4.1.min.js')}}"></script>
+<script src="{{asset('assets/frontend/js/jquery-migrate-3.1.0.min.js')}}"></script>
 <script src="{{asset('assets/frontend/js/bootstrap.bundle.min.js')}}"></script>
+<script src="{{asset('assets/frontend/js/slick.min.js')}}"></script>
 <script src="{{asset('assets/frontend/js/custom.js')}}"></script>
 
 @include('frontend.partials.google-captcha')

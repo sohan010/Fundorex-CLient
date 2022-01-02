@@ -17,11 +17,15 @@
 
 
     <link rel="icon" type="image/x-icon" href="{{asset('assets/frontend/img/favicon.ico')}}">
+    <link rel="stylesheet" href="{{asset('assets/frontend/css/fontawesome.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/common/css/font-awesome.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/frontend/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/frontend/css/slick-theme.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/frontend/css/slick.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/frontend/css/dynamic-style.css')}}">
     <link rel="stylesheet" href="{{asset('assets/frontend/font/bootstrap-icons.css')}}">
     <link rel="stylesheet" href="{{asset('assets/frontend/css/custom.css')}}">
 
-    <link rel="stylesheet" href="{{asset('assets/frontend/css/dynamic-style.css')}}">
     @include('frontend.partials.css-variable')
     @yield('style')
 
@@ -29,8 +33,7 @@
          <link rel="stylesheet" href="{{asset('assets/frontend/css/rtl.css')}}">
      @endif
     @include('frontend.partials.og-meta')
-    <script src="{{asset('assets/frontend/js/jquery-3.4.1.min.js')}}"></script>
-    <script src="{{asset('assets/frontend/js/jquery-migrate-3.1.0.min.js')}}"></script>
+
     <script>var siteurl = "{{url('/')}}"</script>
     {!! filter_static_option_value('site_third_party_tracking_code',$global_static_field_data) !!}
 </head>

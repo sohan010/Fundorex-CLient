@@ -676,3 +676,59 @@ ul.timeline > li > a {
         right: 31px;
     }
 }
+
+
+.progress-item .single-progressbar .progressbar {
+    width: 100%;
+    position: relative;
+    background-color: #f4f4f4;
+}
+
+.progress-item .single-progressbar .progressbar .proggress {
+    background-color: var(--secondary-color) !important;
+}
+
+.progress-item .single-progressbar .progressbar .percentCount {
+    position: absolute;
+    color: white;
+    left: 0%;
+    top: -30px;
+    background-color: #14b3e4;
+    padding: 2px 5px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.progress-content .goal {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    padding-top: 10px;
+}
+
+.progressbar
+{
+    width: 100%;
+    background-color: rgb(238, 238, 238);
+    border-radius: 0px;
+}
+
+.progress{
+    background-color: rgb(255, 138, 115);
+    height: 5px;
+    border-radius: 0px;
+    width: 10.25%;
+}
+
+.percentCount:after {
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    content: "";
+    width: 0;
+    height: 0;
+    border-top: 10px solid var(--main-color-one);
+    border-right: 15px solid transparent;
+}
+

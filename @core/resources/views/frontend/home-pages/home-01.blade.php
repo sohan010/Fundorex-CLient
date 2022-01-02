@@ -20,33 +20,14 @@
     <!-- banner -->
     <div class="row pl-25 pr-15">
         <div class="col-xl-12 col-lg-12 col-md-12 col-12 mx-auto">
-            <div id="carouselHome" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#carouselHome" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#carouselHome" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#carouselHome" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                </div>
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img src="{{asset('assets/frontend/img/banner.jpg')}}" class="d-block w-100" alt="Donasi">
+                <div class="carousel-all slick-slider-active">
+                    @foreach($all_header_slider as $data)
+                    <div class="slick-slider-item">
+                        {!! render_image_markup_by_attachment_id($data->image) !!}
                     </div>
-                    <div class="carousel-item">
-                        <img src="{{asset('assets/frontend/img/banner.jpg')}}" class="d-block w-100" alt="Donasi">
-                    </div>
+                     @endforeach
 
-                    <div class="carousel-item">
-                        <img src="{{asset('assets/frontend/img/banner.jpg')}}" class="d-block w-100" alt="Donasi">
-                    </div>
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselHome" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselHome" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-            </div>
         </div>
     </div>
     <!-- /banner -->
@@ -55,30 +36,14 @@
     <div class="row pl-25 pr-15">
         <div class="col-xl-12 col-lg-12 col-md-12 col-12 mx-auto">
             <div class="row text-center pt-4">
+                @foreach($all_donation_category as $data)
                 <div class="col category">
-                    <a href="#">
-                        <img src="{{asset('assets/frontend/img/anak-yatim.svg')}}" class="img-fluid" alt="Donasi - Anak Yatim">
-                        <span class="small d-block textMenuBottom">Anak Yatim</span>
+                    <a href="{{route('frontend.donations.category',['id' => $data->id,'any' => Str::slug($data->title) ?? '' ])}}">
+                        {!! render_image_markup_by_attachment_id($data->image) !!}
+                        <span class="small d-block textMenuBottom">{{$data->title ?? ''}}</span>
                     </a>
                 </div>
-                <div class="col category">
-                    <a href="#">
-                        <img src="{{asset('assets/frontend/img/rumah-ibadah.svg')}}" class="img-fluid" alt="Donasi - Rumah Ibadah">
-                        <span class="small d-block textMenuBottom">Rumah Ibadah</span>
-                    </a>
-                </div>
-                <div class="col category">
-                    <a href="#">
-                        <img src="{{asset('assets/frontend/img/panti-asuh.svg')}}" class="img-fluid" alt="Donasi -Panti Asuh">
-                        <span class="small d-block textMenuBottom">Panti Asuh</span>
-                    </a>
-                </div>
-                <div class="col category">
-                    <a href="#">
-                        <img src="{{asset('assets/frontend/img/bencana-alam.svg')}}" class="img-fluid" alt="Donasi - Bencana Alam">
-                        <span class="small d-block textMenuBottom">Bencana Alam</span>
-                    </a>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>
@@ -87,100 +52,45 @@
     <!-- campaign mendesak -->
     <div class="row pl-25 pr-15">
         <div class="col-xl-12 col-lg-12 col-md-12 col-12 mx-auto CampaignMendesak pt-4">
-            <h6 class="judul">Campaign mendesak</h6>
+            <h6 class="judul">{{ get_static_option('donation_single_urgent_donation_text') }}</h6>
             <h6 class="judulh6">Saudara kita butuh bantuanmu</h6>
 
             <div class="scrolling-wrapper row mt-4 pb-4 pt-2 contentResponsive">
+                @foreach($urgent_cause as $data)
                 <div class="col-xl-4 col-lg-4 col-md-4 col-6 float-start p-3px">
                     <div class="card">
-                        <img src="{{asset('assets/frontend/img/campaign.jpg')}}" class="d-block w-100 img-fluid" alt="Donasi">
-                        <span class="judulCampaignMendesak">Galang dana korban banjir</span>
+                       {!! render_image_markup_by_attachment_id($data->image) !!}
+                        <a href="{{route('frontend.donations.single',$data->slug)}}"><span class="judulCampaignMendesak">{{$data->title ?? __('No Title')}}</span></a>
                         <p>Terkumpul</p>
-                        <span class="jumlahDonasi">Rp 11.250.000</span>
-                        <span class="padding-progressbar">
+                        <div class="progress-content">
+                            <span class="padding-progressbar">
                                 <div class="progress">
                                     <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
                             </span>
 
-                        <div class="footer-CampaignMendesak"><span class="text-start">1000 donatur</span><span class="text-end">10 hari lagi</span></div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-lg-4 col-md-4 col-6 float-start p-3px">
-                    <div class="card">
-                        <img src="{{asset('assets/frontend/img/campaign.jpg')}}" class="d-block w-100 img-fluid" alt="Donasi">
-                        <span class="judulCampaignMendesak">Galang dana korban banjir</span>
-                        <p>Terkumpul</p>
-                        <span class="jumlahDonasi">Rp 11.250.000</span>
-                        <span class="padding-progressbar">
-                                <div class="progress">
-                                    <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+    {{--                             <div class="progress-item">--}}
+    {{--                                <div class="single-progressbar">--}}
+    {{--                                    <div class="donation-progress" data-percentage="{{get_percentage($data->amount,$data->raised)}}"></div>--}}
+    {{--                                </div>--}}
+    {{--                            </div>--}}
+
+                             <div class="progress-item">
+                                <div class="single-progressbar">
+                                    <div class="donation-progress" data-percentage="{{get_percentage($data->amount,$data->raised)}}"></div>
                                 </div>
-                            </span>
+                            </div>
+
+                            <div class="goal">
+                                <h4 class="raised">{{__('Raised')}}: {{amount_with_currency_symbol($data->raised ?? 0 )}}</h4>
+                                <h4 class="raised">{{__('Goal')}}: {{amount_with_currency_symbol($data->amount)}}</h4>
+                            </div>
+                        </div>
 
                         <div class="footer-CampaignMendesak"><span class="text-start">1000 donatur</span><span class="text-end">10 hari lagi</span></div>
                     </div>
                 </div>
-                <div class="col-xl-4 col-lg-4 col-md-4 col-6 float-start p-3px">
-                    <div class="card">
-                        <img src="{{asset('assets/frontend/img/campaign.jpg')}}" class="d-block w-100 img-fluid" alt="Donasi">
-                        <span class="judulCampaignMendesak">Galang dana korban banjir</span>
-                        <p>Terkumpul</p>
-                        <span class="jumlahDonasi">Rp 11.250.000</span>
-                        <span class="padding-progressbar">
-                                <div class="progress">
-                                    <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                            </span>
-
-                        <div class="footer-CampaignMendesak"><span class="text-start">1000 donatur</span><span class="text-end">10 hari lagi</span></div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-lg-4 col-md-4 col-6 float-start p-3px">
-                    <div class="card">
-                        <img src="{{asset('assets/frontend/img/campaign.jpg')}}" class="d-block w-100 img-fluid" alt="Donasi">
-                        <span class="judulCampaignMendesak">Galang dana korban banjir</span>
-                        <p>Terkumpul</p>
-                        <span class="jumlahDonasi">Rp 11.250.000</span>
-                        <span class="padding-progressbar">
-                                <div class="progress">
-                                    <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                            </span>
-
-                        <div class="footer-CampaignMendesak"><span class="text-start">1000 donatur</span><span class="text-end">10 hari lagi</span></div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-lg-4 col-md-4 col-6 float-start p-3px">
-                    <div class="card">
-                        <img src="{{asset('assets/frontend/img/campaign.jpg')}}" class="d-block w-100 img-fluid" alt="Donasi">
-                        <span class="judulCampaignMendesak">Galang dana korban banjir</span>
-                        <p>Terkumpul</p>
-                        <span class="jumlahDonasi">Rp 11.250.000</span>
-                        <span class="padding-progressbar">
-                                <div class="progress">
-                                    <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                            </span>
-
-                        <div class="footer-CampaignMendesak"><span class="text-start">1000 donatur</span><span class="text-end">10 hari lagi</span></div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-lg-4 col-md-4 col-6 float-start p-3px">
-                    <div class="card">
-                        <img src="{{asset('assets/frontend/img/campaign.jpg')}}" class="d-block w-100 img-fluid" alt="Donasi">
-                        <span class="judulCampaignMendesak">Galang dana korban banjir</span>
-                        <p>Terkumpul</p>
-                        <span class="jumlahDonasi">Rp 11.250.000</span>
-                        <span class="padding-progressbar">
-                                <div class="progress">
-                                    <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                            </span>
-
-                        <div class="footer-CampaignMendesak"><span class="text-start">1000 donatur</span><span class="text-end">10 hari lagi</span></div>
-                    </div>
-                </div>
+            @endforeach
             </div>
         </div>
     </div>
@@ -206,10 +116,11 @@
     </div>
     <!-- /wakaf -->
 
+
     <!-- campaign populer -->
     <div class="row mb-100 pl-25 pr-15">
         <div class="col-xl-12 col-lg-12 col-md-12 col-12 mx-auto CampaignMendesak pt-4">
-            <h6 class="judul">Campaign populer</h6>
+            <h6 class="judul">{{ get_static_option('donation_single_popular_donation_text') }}</h6>
             <!-- <div class="footer-CampaignMendesak"><span class="text-start">1000 donatur</span><span class="text-end">10 hari lagi</span></div> -->
             <h6 class="judulh6">Saudara kita butuh bantuanmu</h6>
             <span class="wrapLihatSemua">
@@ -217,96 +128,26 @@
                 </span>
 
             <div class="scrolling-wrapper row mt-4 pb-4 pt-2 contentResponsive">
+            @foreach($featured_causes as $data)
                 <div class="col-4 float-start p-3px">
                     <div class="card">
-                        <img src="{{asset('assets/frontend/img/campaign.jpg')}}" class="d-block w-100 img-fluid" alt="Donasi">
-                        <span class="judulCampaignMendesak">Galang dana korban banjir</span>
+                        {!! render_image_markup_by_attachment_id($data->image) !!}
+                        <a href="{{route('frontend.donations.single',$data->slug)}}"><span class="judulCampaignMendesak">{{$data->title ?? __('No Title')}}</span></a>
                         <p>Terkumpul</p>
-                        <span class="jumlahDonasi">Rp 11.250.000</span>
-                        <span class="padding-progressbar">
-                                <div class="progress">
-                                    <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                            </span>
+                        <div class="progress-item">
+                            <div class="single-progressbar">
+                                <div class="donation-progress" data-percentage="{{get_percentage($data->amount,$data->raised)}}"></div>
+                            </div>
+                        </div>
 
+                        <div class="goal">
+                            <h4 class="raised">{{__('Raised')}}: {{amount_with_currency_symbol($data->raised ?? 0 )}}</h4>
+                            <h4 class="raised">{{__('Goal')}}: {{amount_with_currency_symbol($data->amount)}}</h4>
+                        </div>
                         <div class="footer-CampaignMendesak"><span class="text-start">1000 donatur</span><span class="text-end">10 hari lagi</span></div>
                     </div>
                 </div>
-                <div class="col-4 float-start p-3px">
-                    <div class="card">
-                        <img src="{{asset('assets/frontend/img/campaign.jpg')}}" class="d-block w-100 img-fluid" alt="Donasi">
-                        <span class="judulCampaignMendesak">Galang dana korban banjir</span>
-                        <p>Terkumpul</p>
-                        <span class="jumlahDonasi">Rp 11.250.000</span>
-                        <span class="padding-progressbar">
-                                <div class="progress">
-                                    <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                            </span>
-
-                        <div class="footer-CampaignMendesak"><span class="text-start">1000 donatur</span><span class="text-end">10 hari lagi</span></div>
-                    </div>
-                </div>
-                <div class="col-4 float-start p-3px">
-                    <div class="card">
-                        <img src="{{asset('assets/frontend/img/campaign.jpg')}}" class="d-block w-100 img-fluid" alt="Donasi">
-                        <span class="judulCampaignMendesak">Galang dana korban banjir</span>
-                        <p>Terkumpul</p>
-                        <span class="jumlahDonasi">Rp 11.250.000</span>
-                        <span class="padding-progressbar">
-                                <div class="progress">
-                                    <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                            </span>
-
-                        <div class="footer-CampaignMendesak"><span class="text-start">1000 donatur</span><span class="text-end">10 hari lagi</span></div>
-                    </div>
-                </div>
-                <div class="col-4 float-start p-3px">
-                    <div class="card">
-                        <img src="{{asset('assets/frontend/img/campaign.jpg')}}" class="d-block w-100 img-fluid" alt="Donasi">
-                        <span class="judulCampaignMendesak">Galang dana korban banjir</span>
-                        <p>Terkumpul</p>
-                        <span class="jumlahDonasi">Rp 11.250.000</span>
-                        <span class="padding-progressbar">
-                                <div class="progress">
-                                    <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                            </span>
-
-                        <div class="footer-CampaignMendesak"><span class="text-start">1000 donatur</span><span class="text-end">10 hari lagi</span></div>
-                    </div>
-                </div>
-                <div class="col-4 float-start p-3px">
-                    <div class="card">
-                        <img src="{{asset('assets/frontend/img/campaign.jpg')}}" class="d-block w-100 img-fluid" alt="Donasi">
-                        <span class="judulCampaignMendesak">Galang dana korban banjir</span>
-                        <p>Terkumpul</p>
-                        <span class="jumlahDonasi">Rp 11.250.000</span>
-                        <span class="padding-progressbar">
-                                <div class="progress">
-                                    <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                            </span>
-
-                        <div class="footer-CampaignMendesak"><span class="text-start">1000 donatur</span><span class="text-end">10 hari lagi</span></div>
-                    </div>
-                </div>
-                <div class="col-4 float-start p-3px">
-                    <div class="card">
-                        <img src="{{asset('assets/frontend/img/campaign.jpg')}}" class="d-block w-100 img-fluid" alt="Donasi">
-                        <span class="judulCampaignMendesak">Galang dana korban banjir</span>
-                        <p>Terkumpul</p>
-                        <span class="jumlahDonasi">Rp 11.250.000</span>
-                        <span class="padding-progressbar">
-                                <div class="progress">
-                                    <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                            </span>
-
-                        <div class="footer-CampaignMendesak"><span class="text-start">1000 donatur</span><span class="text-end">10 hari lagi</span></div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>
@@ -385,3 +226,4 @@
     <!-- /menu bottom -->
 
 </div>
+

@@ -19,11 +19,15 @@
 
 
     <link rel="icon" type="image/x-icon" href="<?php echo e(asset('assets/frontend/img/favicon.ico')); ?>">
+    <link rel="stylesheet" href="<?php echo e(asset('assets/frontend/css/fontawesome.min.css')); ?>">
+    <link rel="stylesheet" href="<?php echo e(asset('assets/common/css/font-awesome.min.css')); ?>">
     <link rel="stylesheet" href="<?php echo e(asset('assets/frontend/css/bootstrap.min.css')); ?>">
+    <link rel="stylesheet" href="<?php echo e(asset('assets/frontend/css/slick-theme.css')); ?>">
+    <link rel="stylesheet" href="<?php echo e(asset('assets/frontend/css/slick.css')); ?>">
+    <link rel="stylesheet" href="<?php echo e(asset('assets/frontend/css/dynamic-style.css')); ?>">
     <link rel="stylesheet" href="<?php echo e(asset('assets/frontend/font/bootstrap-icons.css')); ?>">
     <link rel="stylesheet" href="<?php echo e(asset('assets/frontend/css/custom.css')); ?>">
 
-    <link rel="stylesheet" href="<?php echo e(asset('assets/frontend/css/dynamic-style.css')); ?>">
     <?php echo $__env->make('frontend.partials.css-variable', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     <?php echo $__env->yieldContent('style'); ?>
 
@@ -31,8 +35,7 @@
          <link rel="stylesheet" href="<?php echo e(asset('assets/frontend/css/rtl.css')); ?>">
      <?php endif; ?>
     <?php echo $__env->make('frontend.partials.og-meta', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-    <script src="<?php echo e(asset('assets/frontend/js/jquery-3.4.1.min.js')); ?>"></script>
-    <script src="<?php echo e(asset('assets/frontend/js/jquery-migrate-3.1.0.min.js')); ?>"></script>
+
     <script>var siteurl = "<?php echo e(url('/')); ?>"</script>
     <?php echo filter_static_option_value('site_third_party_tracking_code',$global_static_field_data); ?>
 
