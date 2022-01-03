@@ -4,22 +4,22 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateGeneralMenusTable extends Migration
+class CreateBannersTable extends Migration
 {
 
     public function up()
     {
-        Schema::create('general_menus', function (Blueprint $table) {
+        Schema::create('banners', function (Blueprint $table) {
             $table->id();
             $table->string('title')->nullable();
-            $table->string('status')->nullable();
-            $table->text('custom_url')->nullable();
+            $table->string('subtitle')->nullable();
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }
 
     public function down()
     {
-        Schema::dropIfExists('general_menus');
+        Schema::dropIfExists('banners');
     }
 }

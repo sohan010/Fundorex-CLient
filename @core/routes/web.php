@@ -100,7 +100,7 @@ Route::group(['middleware' =>['setlang:frontend','globalVariable','maintains_mod
         Route::post('/donation-user/generate-invoice','FrontendCausesController@generate_donation_invoice')->name('frontend.donation.invoice.generate');
         Route::post('/load/donor/data','FrontendCausesController@load_donor_data')->name('frontend.load.cause.donor.data');
         Route::post('/load/donation-update/data','FrontendCausesController@load_donation_update_data')->name('frontend.load.cause.donation.update.data');
-        Route::get('/'.$donation_page_slug.'-cat/{id}/{any?}','FrontendCausesController@donation_by_category')->name('frontend.donations.category');
+        Route::get('/'.$donation_page_slug.'-cat/{id}','FrontendCausesController@donation_by_category')->name('frontend.donations.category');
 
         Route::post('/'.$donation_page_slug.'/comment/store','FrontendCausesController@cause_comment_store')->name('cause.comment.store');
         Route::post('/'.$donation_page_slug.'/all/comment','FrontendCausesController@cause_all_comment')->name('cause.all.comment');
@@ -110,6 +110,10 @@ Route::group(['middleware' =>['setlang:frontend','globalVariable','maintains_mod
 
         //Donation Flag Report Store
         Route::post('/'.$donation_page_slug.'/flag/report/store','FrontendCausesController@flag_report_store')->name('frontend.donation.flag.report.store');
+
+
+        //Client Routes
+        Route::get('/all-donor-page','FrontendCausesController@all_donor_page')->name('frontend.donation.all.donor.page');
 
 
         Route::post('/'.$donation_page_slug,'CausesLogController@store_donation_logs')->name('frontend.donations.log.store');
@@ -190,6 +194,10 @@ Route::get('/'.$contact_page_slug,'FrontendController@contact_page')->name('fron
 Route::get('/'.$success_story_page_slug,'FrontendController@success_story_page')->name('frontend.success.story');
 Route::get('/'.$success_story_page_slug.'/{slug}','FrontendController@success_story_single')->name('frontend.success.story.single');
 Route::get('/'.$success_story_page_slug.'-category/{id}/{any?}','FrontendController@success_story_category')->name('frontend.success.story.category');
+
+
+//Client New Required Routes
+
 
 
 //Newsletter
@@ -751,13 +759,22 @@ Route::prefix('admin-home')->middleware(['setlang:backend','adminglobalVariable'
     });
 
     //GENERAL MENU MANAGE
-    Route::group(['prefix'=>'menu','namespace'=>'Admin'],function() {
-        Route::get('/', 'GeneralMenuController@index')->name('admin.menu');
-        Route::post('/new-menu', 'GeneralMenuController@store_new_menu')->name('admin.menu.new');
-        Route::get('/edit/{id}', 'GeneralMenuController@edit_menu')->name('admin.menu.edit');
-        Route::post('/update/{id}', 'GeneralMenuController@update_menu')->name('admin.menu.update');
-        Route::post('/delete/{id}', 'GeneralMenuController@delete_menu')->name('admin.menu.delete');
+    Route::group(['prefix'=>'general-menu','namespace'=>'Admin'],function() {
+        Route::get('/', 'GeneralMenuController@general_menu_manage')->name('admin.general.menu');
+        Route::post('/update', 'GeneralMenuController@update_general_menu_manage')->name('admin.general.menu.update');
     });
+
+    /*----------------------------------------------------------------------------------------------------------------------------
+    | Banner  ROUTES
+    |----------------------------------------------------------------------------------------------------------------------------*/
+    Route::group(['prefix' => 'banner', 'namespace' => 'Admin'], function () {
+        Route::get('/all','BannerController@index')->name('admin.banner');
+        Route::post('/all','BannerController@store');
+        Route::post('/update','BannerController@update')->name('admin.banner.update');
+        Route::post('/delete/{id}','BannerController@delete')->name('admin.banner.delete');
+        Route::post('/bulk-action','BannerController@bulk_action')->name('admin.banner.bulk.action');
+    });
+
 
 
     //404 page manage

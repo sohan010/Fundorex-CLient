@@ -36,299 +36,112 @@
     <meta itemprop="image" content="{{$post_img}}">
 @endsection
 @section('content')
-    <section class="donation-single-content-area padding-top-120 padding-bottom-120">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8">
-                    <div class="contribute-single-page-item single-flag-contribute">
-                        <div id="mobile_btn">
-                            <a href="#"> {{ get_static_option('cause_single_donate_button_text') }}</a>
+    <div class="contatiner">
+        <!-- detail -->
+        <div class="row mb-100 pt-4 pl-25 pr-25">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-12 mx-auto">
+                <div class="card w-100 cardDetail">
+                   {!! render_image_markup_by_attachment_id($donation->image) !!}
+                    <a href="{{url('/')}}" class="detailBack">
+                        <i class="bi bi-arrow-left-circle-fill arrow-left-circle-fill-icon"></i>
+                    </a>
+                    <div class="card-body pl-25 pr-25">
+                        <h5 class="fw-bold card-title">{{$donation->title ?? ''}}</h5>
+
+                        <h6><i class="bi bi-people-fill people-fill-icon"></i> 1000 Donatur
+                            <span class="p-5"><i class="bi bi-stopwatch-fill stopwatch-fill-icon"></i> 10 Hari lagi</span></h6>
+                        <p class="card-text">Dompet Dhuafa <i class="bi bi-check-circle-fill check-circle-fill-icon"></i></p>
+
+                        <div class="progress">
+                            <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
-                        <x-msg.success/>
-                        <x-msg.error/>
 
+{{--                        <div class="progress-item">--}}
+{{--                            <div class="single-progressbar">--}}
+{{--                                <div class="donation-progress" data-percentage="{{get_percentage($donation->amount,$donation->raised)}}"></div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
 
-                        @if(!empty($donation->image_gallery))
-                            @if($donation->emmergency === 'on')
-                                <div class="alert alert-danger">
-                                    <div class="contribute-alert">
-                                        <span> <i class="lab la-android"></i> {{ get_static_option('emmergency_donation_text') }} </span>
-                                    </div>
-                                </div>
-                            @endif
-                            <div class="donation-image-gallery global-carousel-init"
-                                 data-loop="true"
-                                 data-desktopitem="1"
-                                 data-mobileitem="1"
-                                 data-tabletitem="1"
-                                 data-dots="true"
-                                 data-autoplay="true"
-                            >
-                                @php
-                                $images = explode("|",$donation->image_gallery);
-                                @endphp
-
-                                @foreach($images as $image)
-
-
-                                    <div class="single-gallery-image single-featured">
-                                        {!! render_image_markup_by_attachment_id($image,'large') !!}
-                                        @if(get_static_option('donation_flag_show_hide'))
-                                        <a href="#0" data-toggle="modal" data-target="#flag_store_modal" class="flag-icon">
-                                            <i class="fas fa-flag"></i>
-                                        </a>
-                                        @endif
-
-                                        @if($donation->featured === 'on')
-                                        <div class="award-icon-two">
-                                            <i class="las la-award"></i>
-                                        </div>
-                                         @endif
-                                    </div>
-                                @endforeach
-                            </div>
-                        @else
-
-                            @if($donation->emmergency === 'on')
-                                <div class="alert alert-danger">
-                                    <div class="contribute-alert">
-                                        <span> <i class="lab la-android"></i> {{ get_static_option('emmergency_donation_text') }} </span>
-                                    </div>
-                                </div>
-                            @endif
-                        <div class="thumb single-featured">
-                            {!! render_image_markup_by_attachment_id($donation->image,'','large') !!}
-                            @if(get_static_option('donation_flag_show_hide'))
-                            <a href="#0" data-toggle="modal" data-target="#flag_store_modal" class="flag-icon">
-                                <i class="fas fa-flag"></i>
-                            </a>
-                            @endif
-
-                            @if($donation->featured === 'on')
-                            <div class="award-icon-two">
-                                <i class="las la-award"></i>
-                            </div>
-                             @endif
+                        <div class="goal">
+                            <h4 class="raised">{{__('Raised')}}: {{amount_with_currency_symbol($donation->raised ?? 0 )}}</h4>
+                            <h4 class="raised">{{__('Goal')}}: {{amount_with_currency_symbol($donation->amount)}}</h4>
                         </div>
-                        @endif
-                        <div class="post-meta-wrap ">
-                            <div class="author-data author-data-new margin-top-20">
-                                @if($donation->created_by === 'user')
-                                    @php $user = $donation->user; @endphp
-                                @else
-                                    @php $user = $donation->admin; @endphp
-                                @endif
-                                <div class="medical-documents">
-                                    <div class="thumb">
-                                        {!! render_image_markup_by_attachment_id(optional($user)->image,'','thumb') !!}
-                                    </div>
-                                    <div class="auth-details">
 
-                                        <a @if(!empty($user->id)) href="{{route('frontend.user.created.donations',['user' => $donation->created_by,'id' => $user->id ])}}" @endif>
-                                            <h4 class="name">
-                                                {{$user ? $user->name  : __('Anonymous')}}
-                                            </h4>
-                                        </a>
-                                        <ul>
-                                            <li><i class="fas fa-clock"></i> {{$donation->created_at->diffForHumans()}}</li>
-                                            <li><i class="fas fa-tag"></i>
-                                                <a href="{{route('frontend.donations.category',['id' => $donation->categories_id,'any' => Str::slug($donation->category->title ?? __('Uncategorized')) ?? '' ])}}">{{$donation->category->title ?? __('Uncategorized')}}</a>
+                        <!-- tab -->
+                        <ul class="nav nav-tabs pt-4" id="myTab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="Campaign-tab" data-bs-toggle="tab" data-bs-target="#Campaign" type="button" role="tab" aria-controls="Campaign" aria-selected="true">Campaign</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="Perkembangan-tab" data-bs-toggle="tab" data-bs-target="#Perkembangan" type="button" role="tab" aria-controls="Perkembangan" aria-selected="false">Perkembangan</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="Donatur-tab" data-bs-toggle="tab" data-bs-target="#Donatur" type="button" role="tab" aria-controls="Donatur" aria-selected="false">Donatur</button>
+                            </li>
+                        </ul>
+
+                        <div class="tab-content pt-4">
+                            <div class="tab-pane active" id="Campaign" role="tabpanel" aria-labelledby="Campaign-tab">
+                            {!! purify_html_raw($donation->cause_content) !!}
+                            </div>
+                            <div class="tab-pane" id="Perkembangan" role="tabpanel" aria-labelledby="Perkembangan-tab">
+                                <div class="row">
+                                    <div class="col-md-12 offset-md-12">
+                                        <ul class="timeline">
+                                            @foreach($withdraw_logs as $with)
+                                            <li>
+                                                <i class="bi bi-check-circle-fill check-circle-fill-icon"></i>
+                                                <a href="#">{{ date_format('d M Y',$with->created_at) }}</a>
+                                                <p>Penarikan dana sebesar {{amount_with_currency_symbol($with->withdraw_request_amount)}} ke Fundraiser </p>
                                             </li>
+
+                                             @endforeach
+
                                         </ul>
                                     </div>
                                 </div>
-                               @if(get_static_option('donation_medical_document_button_show_hide'))
-                                @if($donation->medical_document)
-                                <div class="medical-document-btn">
-                                    <div class="btn-wrapper">
-                                        @php
-                                            $medical_document_images = explode("|",$donation->medical_document);
-                                        @endphp
-                                        @foreach($medical_document_images as $image_id)
-                                            @php
-                                                $image_url = get_attachment_image_by_id($image_id,'full');
-                                            @endphp
-                                            @if($loop->index === 0)
-                                                <a href="{{$image_url['img_url'] ?? ''}}" class="boxed-btn btn-color-three medical-image-popup" >
-                                                    {!! get_static_option('donation_medical_document_button_text') !!}
-                                                </a>
-                                            @else
-                                                <a class="d-none medical-image-popup" href="{{$image_url['img_url'] ?? ''}}"></a>
-                                            @endif
-                                        @endforeach
-                                    </div>
-                                </div>
-                                @endif
-                                @endif
                             </div>
-                            @php 
-                                $style = ['frontend.partials.donation-single.tab-view' => '02','frontend.partials.donation-single.general-view' =>'01'];
-                                $get_view = !empty($type) && in_array($type,['tab','general']) ? 'frontend.partials.donation-single.'.$type.'-view' : array_search(get_static_option('donation_single_page_variant'),$style); 
-                            @endphp
-                            @if(in_array(get_static_option('donation_single_page_variant'),$style))
-                             @include( $get_view)
-                            @endif
+                            <div class="tab-pane" id="Donatur" role="tabpanel" aria-labelledby="Donatur-tab">
 
-                            @if(count($all_related_cause) > 1)
-                                <div class="related-post-area margin-top-40">
-                                    <div class="section-title ">
-                                        <h4 class="title ">{{ get_static_option('releated_donation_text') }}</h4>
-                                    </div>
-                                    <div class="related-news-carousel global-carousel-init"
-                                         data-desktopitem="2"
-                                         data-mobileitem="1"
-                                         data-tabletitem="1"
-                                         data-margin="30"
-                                         data-dots="true"
-                                    >
-                                        @foreach($all_related_cause as $data)
-                                            @if($data->id === $donation->id) @continue @endif
-                                            <x-frontend.donation.related
-                                                    :featured="$data->featured"
-                                                    :image="$data->image"
-                                                    :amount="$data->amount"
-                                                    :raised="$data->raised"
-                                                    :slug="$data->slug"
-                                                    :title="$data->title"
-                                                    :excerpt="$data->excerpt"
-                                                    :deadline="$data->deadline"
-                                                    :buttontext="get_static_option('donation_button_text')">
-                                            </x-frontend.donation.related>
-                                        @endforeach
-                                    </div>
-                                </div>
-                            @endif
 
+                                @foreach($all_donors as $donor)
+                                <img src="{{asset('assets/frontend/img/donatur1.png')}}" class="img-circle float-start" alt="Donasi - Donatur">
+                                <span class="float-start">{{$donor->name}}</span>
+                                <span class="float-end">{{ amount_with_currency_symbol($donor->amount) }}</span>
+                                <p class="testimoniDonatur">{{ optional($donor->cause)->title }}
+                                    <br>{{$donor->created_at->diffForHUmans()}}</p>
+                                @endforeach
+
+                                <a href="{{route('frontend.donation.all.donor.page')}}" class="lihatSemuaDonatur d-block text-center">Lihat semua</a>
+                            </div>
+                        </div>
+
+                        <div class="col-5 d-grid float-start pr-5 pt-3">
+                            {{--<a href="" type="button" class="btn btn-outline-success"><i class="bi bi-share share-icon"></i> Bagikan</a>--}}
+                            <div class="share-list-icon">
+                                <h5 class="share-title"> {{__('Share:')}} </h5>
+                                <ul>
+                                    @php
+                                        $image_url = get_attachment_image_by_id($donation->image);
+                                        $img_url = $image_url['img_url'] ?? '';
+                                    @endphp
+                                    {!! single_post_share(route('frontend.donations.single',$donation->slug), $donation->title, $img_url) !!}
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-7 d-grid float-start pl-5 pt-3">
+                            <a href="" type="button" class="btn btn-outline-success">Donasi</a>
                         </div>
                     </div>
-                </div>
-
-                <div class="col-lg-4">
-                   <div class="sidebar-outer-wrap">
-                       <div class="sidebar-wrap">
-                           <div class="widget-area">
-                               @if(!empty(get_static_option('donation_single_page_countdown_status')))
-                                <div class="counterdown-wrap event-page">
-                                    <div id="event_countdown"></div>
-                                </div>
-                                @endif
-                               <div class="donation-details" id="donate_box_wrapper">
-                                   <div class="amount-details">
-                                       <h3 class="raised"> {{amount_with_currency_symbol($donation->raised ? $donation->raised : 0 )}}
-                                           <span class="goal">{{get_static_option('donation_raised_text')}} {{__('Of')}} {{amount_with_currency_symbol($donation->amount)}} {{get_static_option('donation_goal_text')}}</span>
-                                       </h3>
-                                   </div>
-                                   <div class="progress">
-                                       <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
-                                            aria-valuenow="{{get_percentage($donation->amount,$donation->raised)}}" aria-valuemin="0" aria-valuemax="100" style="width: {{get_percentage($donation->amount,$donation->raised)}}%"></div>
-                                   </div>
-                                   <div class="btn-wrapper margin-top-30">
-                                       @if($donation->deadline <= date('Y-m-d'))
-                                           <p class="alert alert-danger margin-top-30">{{get_static_option('donation_deadline_text')}}</p>
-                                       @else
-                                           <a class="boxed-btn reverse-color" href="{{ route('frontend.donation.in.separate.page',$donation->id) }}">
-                                               {{ get_static_option('cause_single_donate_button_text') }}
-                                           </a>
-                                       @endif
-                                   </div>
-
-                                   @if(get_static_option('donation_social_icons_show_hide'))
-                                   <div class="social-share-wrap">
-                                            <div class="form-group">
-                                                <input type="hidden" data-url="{{route('frontend.donations.single',$donation->slug)}}" class="form-control" id="donation_copy_id">
-                                                <input type="text" class="form-control" id="copy_field">
-                                                <button  class="btn btn-success btn-sm copy_btn">{{__('Copy')}}</button>
-                                            </div>
-                                       <div class="share-list-icon">
-                                           <h5 class="share-title"> {{__('Share:')}} </h5>
-                                           <ul>
-                                               @php
-                                                   $image_url = get_attachment_image_by_id($donation->image);
-                                                   $img_url = $image_url['img_url'] ?? '';
-                                               @endphp
-
-                                               {!! single_post_share(route('frontend.donations.single',$donation->slug), $donation->title, $img_url) !!}
-                                           </ul>
-                                       </div>
-                                   </div>
-                                 @endif
-                               </div>
-                               {{-- Donate in Seperate Page --}}
-
-
-                               {{-- Donate in Seperate Page --}}
-                           </div>
-                           @if(get_static_option('donation_recent_donors_show_hide'))
-                           <div class="widget-area margin-top-40">
-                               {{-- Fetching donors By Ajax--}}
-                               <div class="box donor-load-box">
-                                   <h3 class="panel-title">
-                                       {{get_static_option('donation_single_recent_donation_text')}} </h3>
-                                   <div id="post_data" data-page="0"></div>
-                               </div>
-                               {{-- Fetching donors By Ajax--}}
-                           </div>
-                           @endif
-                       </div>
-                   </div>
                 </div>
             </div>
         </div>
-    </section>
+        <!-- /detail -->
 
-{{--Flag Store Modal--}}
-    <div class="modal fade" id="flag_store_modal" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">{{__('Cause Claim')}}</h5>
-                    <button type="button" class="close" data-dismiss="modal"><span>×</span></button>
-                </div>
-                <form action="{{route('frontend.donation.flag.report.store')}}" id="faq_edit_modal_form" enctype="multipart/form-data"
-                      method="post">
-                        @csrf
-                    <div class="modal-body">
-                        <input type="hidden" name="cause_id"  value="{{$donation->id}}">
 
-                        @php
-                            $userAuthCheck = auth()->check();
-                            $authUser = auth()->guard('web')->user();
-                        @endphp
-
-                        <div class="form-group">
-                            <label for="edit_title">{{__('Name')}}</label>
-                            <input type="text" class="form-control" name="name"  value="{{ $userAuthCheck ? $authUser->name : ''  }}"
-                                   placeholder="{{__('Name')}}">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="edit_title">{{__('Email')}}</label>
-                            <input type="email" class="form-control" name="email" value="{{ $userAuthCheck ? $authUser->email : ''  }}"
-                                   placeholder="{{__('Email')}}">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="edit_title">{{__('Subject')}}</label>
-                            <input type="text" class="form-control" name="subject"
-                                   placeholder="{{__('Subject')}}">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="edit_description">{{__('Description')}}</label>
-                           <textarea class="form-control" name="description" rows="5"></textarea>
-
-                        </div>
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('Close')}}</button>
-                        <button id="submit" type="submit" class="btn btn-primary">{{__('Submit')}}</button>
-                    </div>
-                </form>
-            </div>
-        </div>
     </div>
-{{--Flag Store Modal--}}
+
+
 
 
 @endsection

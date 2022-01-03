@@ -8,7 +8,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="copyright-item">
-                        <div class="copyright-area-inner">
+                        <div class="copyright-area-inner text-center pt-5 mt-5">
                             <?php echo purify_html_raw(get_footer_copyright_text()); ?>
 
                         </div>

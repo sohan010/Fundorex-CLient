@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\GeneralMenu;
+
 use App\Http\Controllers\Controller;
 use App\Menu;
 use Illuminate\Http\Request;
@@ -13,61 +13,32 @@ class GeneralMenuController extends Controller
     {
         $this->middleware('auth:admin');
     }
-    public function index(){
-        $all_menu = GeneralMenu::where('status','publish')->get();
 
-        return view('backend.pages.menu.menu-index')->with([
-            'all_menu' => $all_menu,
-        ]);
+    public function general_menu_manage(){
+        return view('backend.pages.menu.general-menu-settings');
     }
 
-    public function store_new_menu(Request $request){
+    public function update_general_menu_manage(Request $request){
         $this->validate($request,[
-            'status' => 'required',
-            'custom_url' => 'nullable',
-            'title' => 'required',
+            'menu_home' => 'required',
+            'menu_recent_donation' => 'required',
+            'menu_my_donation' => 'required',
+            'menu_profile' => 'required',
         ]);
 
-        GeneralMenu::create([
-            'status' => $request->status,
-            'custom_url' => $request->custom_url,
-            'title' => $request->title,
-        ]);
+        $data = ['menu_home','menu_recent_donation','menu_my_donation','menu_profile'];
+
+        foreach ($data as $item){
+            if($request->has($item)){
+                update_static_option($item,$request->$item);
+            }
+        }
 
         return redirect()->back()->with([
-            'msg' => __('New Menu Created...'),
+            'msg' => __('New Menu Updatesd...'),
             'type' => 'success'
         ]);
     }
-    public function edit_menu($id){
-        $page_post = GeneralMenu::find($id);
 
-        return view('backend.pages.menu.menu-edit')->with([
-            'page_post' => $page_post,
-        ]);
-    }
-    public function update_menu(Request $request,$id){
-
-        $this->validate($request,[
-            'content' => 'nullable',
-            'title' => 'required',
-        ]);
-        GeneralMenu::where('id',$id)->update([
-            'content' => $request->menu_content,
-            'title' => $request->title,
-        ]);
-
-        return redirect()->back()->with([
-            'msg' => __('Menu updated...'),
-            'type' => 'success'
-        ]);
-    }
-    public function delete_menu(Request $request,$id){
-        GeneralMenu::find($id)->delete();
-        return redirect()->back()->with([
-            'msg' => __('Menu Delete Success...'),
-            'type' => 'danger'
-        ]);
-    }
 
 }

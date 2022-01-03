@@ -230,6 +230,12 @@
                         </li>
                     @endcan
 
+                    <li class="main_dropdown {{active_menu('admin-home/banner/all')}}">
+                        <a href="{{route('admin.banner')}}" aria-expanded="true"><i
+                                    class="ti-control-forward"></i>
+                            <span>{{__('Banners')}}</span></a>
+                    </li>
+
                     @can('counterup-list')
                         <li class="{{active_menu('admin-home/counterup/all')}}">
                             <a href="{{route('admin.counterup')}}"><i class="ti-control-forward"></i>
@@ -420,7 +426,7 @@
                     ])
 
                     <li class="main_dropdown
-                    @if(request()->is(['admin-home/appearance-settings/topbar/*','admin-home/appearance-settings/navbar/*','admin-home/appearance-settings/home-variant/*','admin-home/media-upload/page','admin-home/menu','admin-home/menu-edit/*','admin-home/widgets','admin-home/widgets/*','admin-home/popup-builder/*','admin-home/form-builder/*'])) active @endif ">
+                    @if(request()->is(['admin-home/appearance-settings/topbar/*','admin-home/appearance-settings/navbar/*','admin-home/appearance-settings/home-variant/*','admin-home/media-upload/page','admin-home/appearance-settings/general-menu','admin-home/menu-edit/*','admin-home/widgets','admin-home/widgets/*','admin-home/popup-builder/*','admin-home/form-builder/*'])) active @endif ">
                         <a href="javascript:void(0)" aria-expanded="true"><i class="ti-settings"></i>
                             <span>{{__('Appearance Settings')}}</span></a>
                         <ul class="collapse ">
@@ -445,20 +451,30 @@
                                     </a>
                                 </li>
                             @endcan
+
                             @can('appearance-menu-manage-list')
-                                <li
-                                        class="main_dropdown
-                                        {{active_menu('admin-home/menu')}}
-                                        @if(request()->is('admin-home/menu-edit/*')) active @endif
-                                                ">
-                                    <a href="javascript:void(0)" aria-expanded="true">
-                                        {{__('Menus Manage')}}</a>
-                                    <ul class="collapse">
-                                        <li class="{{active_menu('admin-home/menu')}}"><a
-                                                    href="{{route('admin.menu')}}">{{__('All Menus')}}</a></li>
-                                    </ul>
-                                </li>
+                            <li class="main_dropdown {{active_menu('admin-home/appearance-settings/general-menu')}}">
+                                <a href="{{route('admin.general.menu')}}"
+                                   aria-expanded="true">
+                                    {{__('Menu Manage')}}
+                                </a>
+                            </li>
                             @endcan
+
+{{--                            @can('appearance-menu-manage-list')--}}
+{{--                                <li--}}
+{{--                                        class="main_dropdown--}}
+{{--                                        {{active_menu('admin-home/menu')}}--}}
+{{--                                        @if(request()->is('admin-home/menu-edit/*')) active @endif--}}
+{{--                                                ">--}}
+{{--                                    <a href="javascript:void(0)" aria-expanded="true">--}}
+{{--                                        {{__('Menus Manage')}}</a>--}}
+{{--                                    <ul class="collapse">--}}
+{{--                                        <li class="{{active_menu('admin-home/menu')}}"><a--}}
+{{--                                                    href="{{route('admin.menu')}}">{{__('All Menus')}}</a></li>--}}
+{{--                                    </ul>--}}
+{{--                                </li>--}}
+{{--                            @endcan--}}
                             @can('appearance-widget-manage')
                                 <li
                                         class="main_dropdown

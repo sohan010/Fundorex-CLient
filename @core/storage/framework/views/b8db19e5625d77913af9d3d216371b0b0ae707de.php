@@ -38,329 +38,115 @@
     <meta itemprop="image" content="<?php echo e($post_img); ?>">
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
-    <section class="donation-single-content-area padding-top-120 padding-bottom-120">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8">
-                    <div class="contribute-single-page-item single-flag-contribute">
-                        <div id="mobile_btn">
-                            <a href="#"> <?php echo e(get_static_option('cause_single_donate_button_text')); ?></a>
+    <div class="contatiner">
+        <!-- detail -->
+        <div class="row mb-100 pt-4 pl-25 pr-25">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-12 mx-auto">
+                <div class="card w-100 cardDetail">
+                   <?php echo render_image_markup_by_attachment_id($donation->image); ?>
+
+                    <a href="<?php echo e(url('/')); ?>" class="detailBack">
+                        <i class="bi bi-arrow-left-circle-fill arrow-left-circle-fill-icon"></i>
+                    </a>
+                    <div class="card-body pl-25 pr-25">
+                        <h5 class="fw-bold card-title"><?php echo e($donation->title ?? ''); ?></h5>
+
+                        <h6><i class="bi bi-people-fill people-fill-icon"></i> 1000 Donatur
+                            <span class="p-5"><i class="bi bi-stopwatch-fill stopwatch-fill-icon"></i> 10 Hari lagi</span></h6>
+                        <p class="card-text">Dompet Dhuafa <i class="bi bi-check-circle-fill check-circle-fill-icon"></i></p>
+
+                        <div class="progress">
+                            <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
-                        <?php if (isset($component)) { $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4 = $component; } ?>
-<?php $component = $__env->getContainer()->make(Illuminate\View\AnonymousComponent::class, ['view' => 'components.msg.success','data' => []]); ?>
-<?php $component->withName('msg.success'); ?>
-<?php if ($component->shouldRender()): ?>
-<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
-<?php $component->withAttributes([]); ?>
-<?php if (isset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4)): ?>
-<?php $component = $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4; ?>
-<?php unset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4); ?>
-<?php endif; ?>
-<?php echo $__env->renderComponent(); ?>
-<?php endif; ?>
-                        <?php if (isset($component)) { $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4 = $component; } ?>
-<?php $component = $__env->getContainer()->make(Illuminate\View\AnonymousComponent::class, ['view' => 'components.msg.error','data' => []]); ?>
-<?php $component->withName('msg.error'); ?>
-<?php if ($component->shouldRender()): ?>
-<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
-<?php $component->withAttributes([]); ?>
-<?php if (isset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4)): ?>
-<?php $component = $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4; ?>
-<?php unset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4); ?>
-<?php endif; ?>
-<?php echo $__env->renderComponent(); ?>
-<?php endif; ?>
 
 
-                        <?php if(!empty($donation->image_gallery)): ?>
-                            <?php if($donation->emmergency === 'on'): ?>
-                                <div class="alert alert-danger">
-                                    <div class="contribute-alert">
-                                        <span> <i class="lab la-android"></i> <?php echo e(get_static_option('emmergency_donation_text')); ?> </span>
-                                    </div>
-                                </div>
-                            <?php endif; ?>
-                            <div class="donation-image-gallery global-carousel-init"
-                                 data-loop="true"
-                                 data-desktopitem="1"
-                                 data-mobileitem="1"
-                                 data-tabletitem="1"
-                                 data-dots="true"
-                                 data-autoplay="true"
-                            >
-                                <?php
-                                $images = explode("|",$donation->image_gallery);
-                                ?>
-
-                                <?php $__currentLoopData = $images; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $image): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 
 
-                                    <div class="single-gallery-image single-featured">
-                                        <?php echo render_image_markup_by_attachment_id($image,'large'); ?>
 
-                                        <?php if(get_static_option('donation_flag_show_hide')): ?>
-                                        <a href="#0" data-toggle="modal" data-target="#flag_store_modal" class="flag-icon">
-                                            <i class="fas fa-flag"></i>
-                                        </a>
-                                        <?php endif; ?>
 
-                                        <?php if($donation->featured === 'on'): ?>
-                                        <div class="award-icon-two">
-                                            <i class="las la-award"></i>
-                                        </div>
-                                         <?php endif; ?>
-                                    </div>
-                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                            </div>
-                        <?php else: ?>
 
-                            <?php if($donation->emmergency === 'on'): ?>
-                                <div class="alert alert-danger">
-                                    <div class="contribute-alert">
-                                        <span> <i class="lab la-android"></i> <?php echo e(get_static_option('emmergency_donation_text')); ?> </span>
-                                    </div>
-                                </div>
-                            <?php endif; ?>
-                        <div class="thumb single-featured">
-                            <?php echo render_image_markup_by_attachment_id($donation->image,'','large'); ?>
-
-                            <?php if(get_static_option('donation_flag_show_hide')): ?>
-                            <a href="#0" data-toggle="modal" data-target="#flag_store_modal" class="flag-icon">
-                                <i class="fas fa-flag"></i>
-                            </a>
-                            <?php endif; ?>
-
-                            <?php if($donation->featured === 'on'): ?>
-                            <div class="award-icon-two">
-                                <i class="las la-award"></i>
-                            </div>
-                             <?php endif; ?>
+                        <div class="goal">
+                            <h4 class="raised"><?php echo e(__('Raised')); ?>: <?php echo e(amount_with_currency_symbol($donation->raised ?? 0 )); ?></h4>
+                            <h4 class="raised"><?php echo e(__('Goal')); ?>: <?php echo e(amount_with_currency_symbol($donation->amount)); ?></h4>
                         </div>
-                        <?php endif; ?>
-                        <div class="post-meta-wrap ">
-                            <div class="author-data author-data-new margin-top-20">
-                                <?php if($donation->created_by === 'user'): ?>
-                                    <?php $user = $donation->user; ?>
-                                <?php else: ?>
-                                    <?php $user = $donation->admin; ?>
-                                <?php endif; ?>
-                                <div class="medical-documents">
-                                    <div class="thumb">
-                                        <?php echo render_image_markup_by_attachment_id(optional($user)->image,'','thumb'); ?>
 
-                                    </div>
-                                    <div class="auth-details">
+                        <!-- tab -->
+                        <ul class="nav nav-tabs pt-4" id="myTab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="Campaign-tab" data-bs-toggle="tab" data-bs-target="#Campaign" type="button" role="tab" aria-controls="Campaign" aria-selected="true">Campaign</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="Perkembangan-tab" data-bs-toggle="tab" data-bs-target="#Perkembangan" type="button" role="tab" aria-controls="Perkembangan" aria-selected="false">Perkembangan</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="Donatur-tab" data-bs-toggle="tab" data-bs-target="#Donatur" type="button" role="tab" aria-controls="Donatur" aria-selected="false">Donatur</button>
+                            </li>
+                        </ul>
 
-                                        <a <?php if(!empty($user->id)): ?> href="<?php echo e(route('frontend.user.created.donations',['user' => $donation->created_by,'id' => $user->id ])); ?>" <?php endif; ?>>
-                                            <h4 class="name">
-                                                <?php echo e($user ? $user->name  : __('Anonymous')); ?>
+                        <div class="tab-content pt-4">
+                            <div class="tab-pane active" id="Campaign" role="tabpanel" aria-labelledby="Campaign-tab">
+                            <?php echo purify_html_raw($donation->cause_content); ?>
 
-                                            </h4>
-                                        </a>
-                                        <ul>
-                                            <li><i class="fas fa-clock"></i> <?php echo e($donation->created_at->diffForHumans()); ?></li>
-                                            <li><i class="fas fa-tag"></i>
-                                                <a href="<?php echo e(route('frontend.donations.category',['id' => $donation->categories_id,'any' => Str::slug($donation->category->title ?? __('Uncategorized')) ?? '' ])); ?>"><?php echo e($donation->category->title ?? __('Uncategorized')); ?></a>
+                            </div>
+                            <div class="tab-pane" id="Perkembangan" role="tabpanel" aria-labelledby="Perkembangan-tab">
+                                <div class="row">
+                                    <div class="col-md-12 offset-md-12">
+                                        <ul class="timeline">
+                                            <?php $__currentLoopData = $withdraw_logs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $with): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <li>
+                                                <i class="bi bi-check-circle-fill check-circle-fill-icon"></i>
+                                                <a href="#"><?php echo e(date_format('d M Y',$with->created_at)); ?></a>
+                                                <p>Penarikan dana sebesar <?php echo e(amount_with_currency_symbol($with->withdraw_request_amount)); ?> ke Fundraiser </p>
                                             </li>
+
+                                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+
                                         </ul>
                                     </div>
                                 </div>
-                               <?php if(get_static_option('donation_medical_document_button_show_hide')): ?>
-                                <?php if($donation->medical_document): ?>
-                                <div class="medical-document-btn">
-                                    <div class="btn-wrapper">
-                                        <?php
-                                            $medical_document_images = explode("|",$donation->medical_document);
-                                        ?>
-                                        <?php $__currentLoopData = $medical_document_images; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $image_id): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                            <?php
-                                                $image_url = get_attachment_image_by_id($image_id,'full');
-                                            ?>
-                                            <?php if($loop->index === 0): ?>
-                                                <a href="<?php echo e($image_url['img_url'] ?? ''); ?>" class="boxed-btn btn-color-three medical-image-popup" >
-                                                    <?php echo get_static_option('donation_medical_document_button_text'); ?>
-
-                                                </a>
-                                            <?php else: ?>
-                                                <a class="d-none medical-image-popup" href="<?php echo e($image_url['img_url'] ?? ''); ?>"></a>
-                                            <?php endif; ?>
-                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                    </div>
-                                </div>
-                                <?php endif; ?>
-                                <?php endif; ?>
                             </div>
-                            <?php 
-                                $style = ['frontend.partials.donation-single.tab-view' => '02','frontend.partials.donation-single.general-view' =>'01'];
-                                $get_view = !empty($type) && in_array($type,['tab','general']) ? 'frontend.partials.donation-single.'.$type.'-view' : array_search(get_static_option('donation_single_page_variant'),$style); 
-                            ?>
-                            <?php if(in_array(get_static_option('donation_single_page_variant'),$style)): ?>
-                             <?php echo $__env->make( $get_view, \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-                            <?php endif; ?>
+                            <div class="tab-pane" id="Donatur" role="tabpanel" aria-labelledby="Donatur-tab">
 
-                            <?php if(count($all_related_cause) > 1): ?>
-                                <div class="related-post-area margin-top-40">
-                                    <div class="section-title ">
-                                        <h4 class="title "><?php echo e(get_static_option('releated_donation_text')); ?></h4>
-                                    </div>
-                                    <div class="related-news-carousel global-carousel-init"
-                                         data-desktopitem="2"
-                                         data-mobileitem="1"
-                                         data-tabletitem="1"
-                                         data-margin="30"
-                                         data-dots="true"
-                                    >
-                                        <?php $__currentLoopData = $all_related_cause; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $data): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                            <?php if($data->id === $donation->id): ?> <?php continue; ?> <?php endif; ?>
-                                            <?php if (isset($component)) { $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4 = $component; } ?>
-<?php $component = $__env->getContainer()->make(Illuminate\View\AnonymousComponent::class, ['view' => 'components.frontend.donation.related','data' => ['featured' => $data->featured,'image' => $data->image,'amount' => $data->amount,'raised' => $data->raised,'slug' => $data->slug,'title' => $data->title,'excerpt' => $data->excerpt,'deadline' => $data->deadline,'buttontext' => get_static_option('donation_button_text')]]); ?>
-<?php $component->withName('frontend.donation.related'); ?>
-<?php if ($component->shouldRender()): ?>
-<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
-<?php $component->withAttributes(['featured' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($data->featured),'image' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($data->image),'amount' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($data->amount),'raised' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($data->raised),'slug' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($data->slug),'title' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($data->title),'excerpt' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($data->excerpt),'deadline' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($data->deadline),'buttontext' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(get_static_option('donation_button_text'))]); ?>
-                                             <?php if (isset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4)): ?>
-<?php $component = $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4; ?>
-<?php unset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4); ?>
-<?php endif; ?>
-<?php echo $__env->renderComponent(); ?>
-<?php endif; ?>
-                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                    </div>
-                                </div>
-                            <?php endif; ?>
 
+                                <?php $__currentLoopData = $all_donors; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $donor): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <img src="<?php echo e(asset('assets/frontend/img/donatur1.png')); ?>" class="img-circle float-start" alt="Donasi - Donatur">
+                                <span class="float-start"><?php echo e($donor->name); ?></span>
+                                <span class="float-end"><?php echo e(amount_with_currency_symbol($donor->amount)); ?></span>
+                                <p class="testimoniDonatur"><?php echo e(optional($donor->cause)->title); ?>
+
+                                    <br><?php echo e($donor->created_at->diffForHUmans()); ?></p>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+
+                                <a href="<?php echo e(route('frontend.donation.all.donor.page')); ?>" class="lihatSemuaDonatur d-block text-center">Lihat semua</a>
+                            </div>
+                        </div>
+
+                        <div class="col-5 d-grid float-start pr-5 pt-3">
+                            
+                            <div class="share-list-icon">
+                                <h5 class="share-title"> <?php echo e(__('Share:')); ?> </h5>
+                                <ul>
+                                    <?php
+                                        $image_url = get_attachment_image_by_id($donation->image);
+                                        $img_url = $image_url['img_url'] ?? '';
+                                    ?>
+                                    <?php echo single_post_share(route('frontend.donations.single',$donation->slug), $donation->title, $img_url); ?>
+
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-7 d-grid float-start pl-5 pt-3">
+                            <a href="" type="button" class="btn btn-outline-success">Donasi</a>
                         </div>
                     </div>
-                </div>
-
-                <div class="col-lg-4">
-                   <div class="sidebar-outer-wrap">
-                       <div class="sidebar-wrap">
-                           <div class="widget-area">
-                               <?php if(!empty(get_static_option('donation_single_page_countdown_status'))): ?>
-                                <div class="counterdown-wrap event-page">
-                                    <div id="event_countdown"></div>
-                                </div>
-                                <?php endif; ?>
-                               <div class="donation-details" id="donate_box_wrapper">
-                                   <div class="amount-details">
-                                       <h3 class="raised"> <?php echo e(amount_with_currency_symbol($donation->raised ? $donation->raised : 0 )); ?>
-
-                                           <span class="goal"><?php echo e(get_static_option('donation_raised_text')); ?> <?php echo e(__('Of')); ?> <?php echo e(amount_with_currency_symbol($donation->amount)); ?> <?php echo e(get_static_option('donation_goal_text')); ?></span>
-                                       </h3>
-                                   </div>
-                                   <div class="progress">
-                                       <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
-                                            aria-valuenow="<?php echo e(get_percentage($donation->amount,$donation->raised)); ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo e(get_percentage($donation->amount,$donation->raised)); ?>%"></div>
-                                   </div>
-                                   <div class="btn-wrapper margin-top-30">
-                                       <?php if($donation->deadline <= date('Y-m-d')): ?>
-                                           <p class="alert alert-danger margin-top-30"><?php echo e(get_static_option('donation_deadline_text')); ?></p>
-                                       <?php else: ?>
-                                           <a class="boxed-btn reverse-color" href="<?php echo e(route('frontend.donation.in.separate.page',$donation->id)); ?>">
-                                               <?php echo e(get_static_option('cause_single_donate_button_text')); ?>
-
-                                           </a>
-                                       <?php endif; ?>
-                                   </div>
-
-                                   <?php if(get_static_option('donation_social_icons_show_hide')): ?>
-                                   <div class="social-share-wrap">
-                                            <div class="form-group">
-                                                <input type="hidden" data-url="<?php echo e(route('frontend.donations.single',$donation->slug)); ?>" class="form-control" id="donation_copy_id">
-                                                <input type="text" class="form-control" id="copy_field">
-                                                <button  class="btn btn-success btn-sm copy_btn"><?php echo e(__('Copy')); ?></button>
-                                            </div>
-                                       <div class="share-list-icon">
-                                           <h5 class="share-title"> <?php echo e(__('Share:')); ?> </h5>
-                                           <ul>
-                                               <?php
-                                                   $image_url = get_attachment_image_by_id($donation->image);
-                                                   $img_url = $image_url['img_url'] ?? '';
-                                               ?>
-
-                                               <?php echo single_post_share(route('frontend.donations.single',$donation->slug), $donation->title, $img_url); ?>
-
-                                           </ul>
-                                       </div>
-                                   </div>
-                                 <?php endif; ?>
-                               </div>
-                               
-
-
-                               
-                           </div>
-                           <?php if(get_static_option('donation_recent_donors_show_hide')): ?>
-                           <div class="widget-area margin-top-40">
-                               
-                               <div class="box donor-load-box">
-                                   <h3 class="panel-title">
-                                       <?php echo e(get_static_option('donation_single_recent_donation_text')); ?> </h3>
-                                   <div id="post_data" data-page="0"></div>
-                               </div>
-                               
-                           </div>
-                           <?php endif; ?>
-                       </div>
-                   </div>
                 </div>
             </div>
         </div>
-    </section>
+        <!-- /detail -->
 
 
-    <div class="modal fade" id="flag_store_modal" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title"><?php echo e(__('Cause Claim')); ?></h5>
-                    <button type="button" class="close" data-dismiss="modal"><span>×</span></button>
-                </div>
-                <form action="<?php echo e(route('frontend.donation.flag.report.store')); ?>" id="faq_edit_modal_form" enctype="multipart/form-data"
-                      method="post">
-                        <?php echo csrf_field(); ?>
-                    <div class="modal-body">
-                        <input type="hidden" name="cause_id"  value="<?php echo e($donation->id); ?>">
-
-                        <?php
-                            $userAuthCheck = auth()->check();
-                            $authUser = auth()->guard('web')->user();
-                        ?>
-
-                        <div class="form-group">
-                            <label for="edit_title"><?php echo e(__('Name')); ?></label>
-                            <input type="text" class="form-control" name="name"  value="<?php echo e($userAuthCheck ? $authUser->name : ''); ?>"
-                                   placeholder="<?php echo e(__('Name')); ?>">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="edit_title"><?php echo e(__('Email')); ?></label>
-                            <input type="email" class="form-control" name="email" value="<?php echo e($userAuthCheck ? $authUser->email : ''); ?>"
-                                   placeholder="<?php echo e(__('Email')); ?>">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="edit_title"><?php echo e(__('Subject')); ?></label>
-                            <input type="text" class="form-control" name="subject"
-                                   placeholder="<?php echo e(__('Subject')); ?>">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="edit_description"><?php echo e(__('Description')); ?></label>
-                           <textarea class="form-control" name="description" rows="5"></textarea>
-
-                        </div>
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal"><?php echo e(__('Close')); ?></button>
-                        <button id="submit" type="submit" class="btn btn-primary"><?php echo e(__('Submit')); ?></button>
-                    </div>
-                </form>
-            </div>
-        </div>
     </div>
+
 
 
 

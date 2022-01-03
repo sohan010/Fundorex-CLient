@@ -1,51 +1,73 @@
-@extends('backend.admin-master')
-@section('style')
-    <link rel="stylesheet" href="{{asset('assets/backend/css/nestable.css')}}">
-@endsection
-@section('site-title')
-    {{__('Edit Menu')}}
-@endsection
-@section('content')
+<?php $__env->startSection('style'); ?>
+    <link rel="stylesheet" href="<?php echo e(asset('assets/backend/css/nestable.css')); ?>">
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('site-title'); ?>
+    <?php echo e(__('Edit Menu')); ?>
+
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
     <div class="col-lg-12 col-ml-12 padding-bottom-30">
         <div class="row">
             <div class="col-lg-12">
                 <div class="margin-top-40"></div>
-                <x-msg.error/>
-                <x-msg.success/>
+                <?php if (isset($component)) { $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4 = $component; } ?>
+<?php $component = $__env->getContainer()->make(Illuminate\View\AnonymousComponent::class, ['view' => 'components.msg.error','data' => []]); ?>
+<?php $component->withName('msg.error'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes([]); ?>
+<?php if (isset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4)): ?>
+<?php $component = $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4; ?>
+<?php unset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4); ?>
+<?php endif; ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+                <?php if (isset($component)) { $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4 = $component; } ?>
+<?php $component = $__env->getContainer()->make(Illuminate\View\AnonymousComponent::class, ['view' => 'components.msg.success','data' => []]); ?>
+<?php $component->withName('msg.success'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes([]); ?>
+<?php if (isset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4)): ?>
+<?php $component = $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4; ?>
+<?php unset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4); ?>
+<?php endif; ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
             </div>
             <div class="col-lg-12 mt-5">
                 <div class="card">
                     <div class="card-body">
                         <div class="header-wrapper d-flex justify-content-between">
-                            <h4 class="header-title">{{__('Edit Menu')}}</h4>
+                            <h4 class="header-title"><?php echo e(__('Edit Menu')); ?></h4>
                             <div class="btn-wrapper">
-                                <a href="{{route('admin.menu')}}" class="btn btn-primary btn-xs">{{__('All Menus')}}</a>
+                                <a href="<?php echo e(route('admin.menu')); ?>" class="btn btn-primary btn-xs"><?php echo e(__('All Menus')); ?></a>
                             </div>
                         </div>
-                        <form action="{{route('admin.menu.update',$page_post->id)}}" id="menu_update_form" method="post"
+                        <form action="<?php echo e(route('admin.menu.update',$page_post->id)); ?>" id="menu_update_form" method="post"
                               enctype="multipart/form-data">
-                            <input type="hidden" name="menu_id" id="menu_id" value="{{$page_post->id}}">
-                            @csrf
-                            @php
+                            <input type="hidden" name="menu_id" id="menu_id" value="<?php echo e($page_post->id); ?>">
+                            <?php echo csrf_field(); ?>
+                            <?php
                                 $menu_content = '';
                                 if (!empty($page_post->content)){
                                     $menu_content = $page_post->content;
                                 }else{
                                     $menu_content = '[{"ptype":"custom","pname":"Home","purl":"@url","id":1}]';
                                 }
-                            @endphp
-                            <textarea  id="menu_content" name="menu_content" class="form-control d-none" >{{$menu_content}}</textarea>
+                            ?>
+                            <textarea  id="menu_content" name="menu_content" class="form-control d-none" ><?php echo e($menu_content); ?></textarea>
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="form-group">
-                                        <label for="title">{{__('Title')}}</label>
+                                        <label for="title"><?php echo e(__('Title')); ?></label>
                                         <input type="text" class="form-control" id="title" name="title"
-                                               value="{{$page_post->title}}">
+                                               value="<?php echo e($page_post->title); ?>">
                                     </div>
                                 </div>
                                 <div class="col-lg-3">
                                     <div class="menu-left-side-content">
-                                        <h3 class="title">{{__('Add menu items')}}</h3>
+                                        <h3 class="title"><?php echo e(__('Add menu items')); ?></h3>
                                         <div class="accordion accordion-wrapper" id="add_menu_item_accordion">
                                             <div class="card">
                                                 <div class="card-header" id="page-list-items">
@@ -55,7 +77,8 @@
                                                                 data-target="#page-list-items-content"
                                                                 aria-expanded="true"
                                                                 aria-controls="page-list-items-content">
-                                                            {{__('Pages')}}
+                                                            <?php echo e(__('Pages')); ?>
+
                                                         </button>
                                                     </h2>
                                                 </div>
@@ -64,23 +87,27 @@
                                                      data-parent="#add_menu_item_accordion">
                                                     <div class="card-body">
                                                         <ul class="page-list-ul">
-                                                            <li data-ptype="custom" data-purl="@url" data-pname="{{__('Home')}}">
+                                                            <li data-ptype="custom" data-purl="@url" data-pname="<?php echo e(__('Home')); ?>">
                                                                 <label class="menu-item-title">
                                                                     <input type="checkbox" class="menu-item-checkbox">
-                                                                    {{__('Home')}}
+                                                                    <?php echo e(__('Home')); ?>
+
                                                                 </label>
                                                             </li>
-                                                            {!! render_pages_list($page_post->lang ?? '') !!}
+                                                            <?php echo render_pages_list($page_post->lang ?? ''); ?>
+
                                                         </ul>
                                                         <div class="form-group">
                                                             <button type="button" id="add_page_to_menu"
-                                                                    class="btn btn-primary btn-xs mt-4 pr-4 pl-4 add_page_to_menu">{{__('Add To Menu')}}</button>
+                                                                    class="btn btn-primary btn-xs mt-4 pr-4 pl-4 add_page_to_menu"><?php echo e(__('Add To Menu')); ?></button>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            {!! render_dynamic_pages_list($page_post->lang ?? '') !!}
-                                            {!! render_mega_menu_list($page_post->lang ?? '') !!}
+                                            <?php echo render_dynamic_pages_list($page_post->lang ?? ''); ?>
+
+                                            <?php echo render_mega_menu_list($page_post->lang ?? ''); ?>
+
                                             <div class="card">
                                                 <div class="card-header" id="custom-links">
                                                     <h2 class="mb-0">
@@ -89,7 +116,8 @@
                                                                 data-target="#custom-links-content"
                                                                 aria-expanded="false"
                                                                 aria-controls="custom-links-content">
-                                                            {{__('Custom Links')}}
+                                                            <?php echo e(__('Custom Links')); ?>
+
                                                         </button>
                                                     </h2>
                                                 </div>
@@ -98,20 +126,20 @@
                                                      data-parent="#add_menu_item_accordion">
                                                     <div class="card-body">
                                                         <div class="form-group">
-                                                            <label for="custom_url"><strong>{{__("URL")}}</strong></label>
+                                                            <label for="custom_url"><strong><?php echo e(__("URL")); ?></strong></label>
                                                             <input type="text" name="custom_url" id="custom_url"
                                                                    class="form-control"
-                                                                   placeholder="{{__('https://')}}">
+                                                                   placeholder="<?php echo e(__('https://')); ?>">
                                                         </div>
                                                         <div class="form-group">
-                                                            <label for="custom_label_text"><strong>{{__("Link Text")}}</strong></label>
+                                                            <label for="custom_label_text"><strong><?php echo e(__("Link Text")); ?></strong></label>
                                                             <input type="text" name="custom_label_text"
                                                                    id="custom_label_text" class="form-control"
-                                                                   placeholder="{{__('label text')}}">
+                                                                   placeholder="<?php echo e(__('label text')); ?>">
                                                         </div>
                                                         <div class="form-group">
                                                             <button type="button" id="add_custom_links"
-                                                                    class="btn btn-primary btn-xs mt-4 pr-4 pl-4">{{__('Add To Menu')}}</button>
+                                                                    class="btn btn-primary btn-xs mt-4 pr-4 pl-4"><?php echo e(__('Add To Menu')); ?></button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -123,22 +151,24 @@
                                     <div class="menu-structure-wrapper">
                                         <div class="card">
                                             <div class="card-header">
-                                                <h3 class="title">{{__('Menu Structure')}}</h3>
+                                                <h3 class="title"><?php echo e(__('Menu Structure')); ?></h3>
                                             </div>
                                             <div class="card-body">
                                                 <section id="drop_down_menu_builder_wrapper">
                                                     <div class="dd" id="nestable">
                                                         <ol class="dd-list">
-                                                            @if(!empty($page_post->content))
-                                                                {!! render_draggable_menu($page_post->id) !!}
-                                                            @else
-                                                                <li class="dd-item" data-id="1" data-purl="@url" data-pname="{{__('Home')}}" data-ptype="custom">
+                                                            <?php if(!empty($page_post->content)): ?>
+                                                                <?php echo render_draggable_menu($page_post->id); ?>
+
+                                                            <?php else: ?>
+                                                                <li class="dd-item" data-id="1" data-purl="@url" data-pname="<?php echo e(__('Home')); ?>" data-ptype="custom">
                                                                     <div class="dd-handle">
-                                                                        {{__('Home')}}
+                                                                        <?php echo e(__('Home')); ?>
+
                                                                     </div>
                                                                     <span class="remove_item">x</span>
                                                                 </li>
-                                                            @endif
+                                                            <?php endif; ?>
                                                         </ol>
                                                     </div>
                                                 </section><!-- END #demo -->
@@ -146,7 +176,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <button type="submit" id="menu_structure_submit_btn" class="btn btn-primary mt-4 pr-4 pl-4">{{__('Update Changes')}}</button>
+                                        <button type="submit" id="menu_structure_submit_btn" class="btn btn-primary mt-4 pr-4 pl-4"><?php echo e(__('Update Changes')); ?></button>
                                     </div>
                                 </div>
                             </div>
@@ -156,9 +186,9 @@
             </div>
         </div>
     </div>
-@endsection
-@section('script')
-    <script src="{{asset('assets/backend/js/jquery.nestable.js')}}"></script>
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('script'); ?>
+    <script src="<?php echo e(asset('assets/backend/js/jquery.nestable.js')); ?>"></script>
     <script>
         $(document).ready(function () {
 
@@ -205,9 +235,9 @@
 
                     $.ajax({
                         type: 'POST',
-                        url: "{{route('admin.mega.menu.item.select.markup')}}",
+                        url: "<?php echo e(route('admin.mega.menu.item.select.markup')); ?>",
                         data:{
-                            _token: "{{csrf_token()}}",
+                            _token: "<?php echo e(csrf_token()); ?>",
                             type : menuType,
                             lang : $('select[name="lang"]').val(),
                             menu_id : $('#menu_id').val(),
@@ -347,10 +377,12 @@
                 var alldata = $('#nestable').nestable('serialize');
                 $('#menu_content').val(JSON.stringify(alldata));
                 $(this).addClass("disabled")
-                $(this).html('<i class="fas fa-spinner fa-spin mr-1"></i> {{__("Updating")}}');
+                $(this).html('<i class="fas fa-spinner fa-spin mr-1"></i> <?php echo e(__("Updating")); ?>');
                 $('#menu_update_form').trigger("submit");
             })
 
         });
     </script>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('backend.admin-master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\laragon\www\fundorex-indonesian-client\@core\resources\views/backend/pages/menu/menu-edit.blade.php ENDPATH**/ ?>

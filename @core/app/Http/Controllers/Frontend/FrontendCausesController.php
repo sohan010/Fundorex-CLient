@@ -8,6 +8,7 @@ use App\CauseCategory;
 use App\CauseLogs;
 use App\CauseUpdate;
 use App\Comment;
+use App\DonationWithdraw;
 use App\FlagReport;
 use App\Helpers\DonationHelpers;
 use App\Helpers\FlashMsg;
@@ -49,6 +50,7 @@ class FrontendCausesController extends Controller
         $causeCommentCount = Comment::where('cause_id', $donation->id)->get();
         $all_donors = CauseLogs::where('cause_id', $donation->id)->take(3)->get();
         $all_related_cause = Cause::Where('categories_id',$donation->categories_id)->orderBy('id', 'desc')->take(6)->get();
+        $withdraw_logs = DonationWithdraw::take(3)->get();
 
         return view(self::BASE_PATH . 'donation-single')->with([
             'all_donations' => $all_donations,
@@ -57,8 +59,15 @@ class FrontendCausesController extends Controller
             'causeCommentCount' => $causeCommentCount,
             'all_donors' => $all_donors,
             'all_related_cause' => $all_related_cause,
+            'withdraw_logs' => $withdraw_logs,
             'type' => request()->get('type') ?? null
         ]);
+    }
+
+    public function all_donor_page()
+    {
+        $all_donors = CauseLogs::paginate();
+        return view(self::BASE_PATH . 'all-donor',compact('all_donors'));
     }
 
     public function donations_in_separate_page($id)
@@ -106,8 +115,8 @@ class FrontendCausesController extends Controller
 
     public function donation_by_category($id)
     {
-        $all_donation = Cause::where('categories_id', $id)->get();
-        return view(self::BASE_PATH . 'donation-category', compact('all_donation'));
+        $all_donations_categories = Cause::where(['categories_id'=> $id])->get();
+        return view(self::BASE_PATH . 'donation-category', compact('all_donations_categories'));
     }
 
     public function cause_comment_store(Request $request)

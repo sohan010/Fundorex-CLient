@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Admin;
+use App\Banner;
 use App\Cause;
 use App\CauseCategory;
 use App\CauseLogs;
@@ -14,6 +15,7 @@ use App\Events;
 use App\EventsCategory;
 use App\Faq;
 use App\Feedback;
+use App\GeneralMenu;
 use App\Helpers\HomePageStaticSettings;
 use App\Http\Controllers\Controller;
 use App\ImageGallery;
@@ -57,12 +59,11 @@ class FrontendController extends Controller
 
     public function index()
     {
-        $home_page_variant = get_static_option('home_page_variant');
         $all_header_slider = HeaderSlider::all();
-
         $urgent_cause = Cause::where(['status' => 'publish','emmergency' => 'on'])->inRandomOrder()->get();
         $featured_causes = Cause::where(['status' => 'publish','featured' => 'on'])->inRandomOrder()->get();
         $all_donation_category = CauseCategory::where(['status' => 'publish'])->get();
+        $banner = Banner::first();
 
         //make a function to call all static option by home page
         $static_field_data = StaticOption::whereIn('option_name',HomePageStaticSettings::get_home_field(get_static_option('home_page_variant')))->get()->mapWithKeys(function ($item) {
@@ -78,6 +79,7 @@ class FrontendController extends Controller
             'urgent_cause' => $urgent_cause,
             'featured_causes' => $featured_causes,
             'all_client_area' => $all_client_area,
+            'banner' => $banner,
         ]);
     }
 
@@ -137,6 +139,7 @@ class FrontendController extends Controller
     {
         return redirect_404_page();
     }
+
 
     public function blog_page()
     {
@@ -583,6 +586,11 @@ class FrontendController extends Controller
             return redirect()->route('user.campaign.new');
         }
         return view('frontend.user.login')->with(['title' => __('Login To Create New Campaign')]);
+    }
+
+    public function user_logout(){
+        Auth::guard('web')->logout();
+        return redirect()->route('user.login');
     }
 
 

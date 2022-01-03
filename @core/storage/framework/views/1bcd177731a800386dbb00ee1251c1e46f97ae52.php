@@ -232,6 +232,12 @@
                         </li>
                     <?php endif; ?>
 
+                    <li class="main_dropdown <?php echo e(active_menu('admin-home/banner/all')); ?>">
+                        <a href="<?php echo e(route('admin.banner')); ?>" aria-expanded="true"><i
+                                    class="ti-control-forward"></i>
+                            <span><?php echo e(__('Banners')); ?></span></a>
+                    </li>
+
                     <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('counterup-list')): ?>
                         <li class="<?php echo e(active_menu('admin-home/counterup/all')); ?>">
                             <a href="<?php echo e(route('admin.counterup')); ?>"><i class="ti-control-forward"></i>
@@ -423,7 +429,7 @@
                     ])): ?>
 
                     <li class="main_dropdown
-                    <?php if(request()->is(['admin-home/appearance-settings/topbar/*','admin-home/appearance-settings/navbar/*','admin-home/appearance-settings/home-variant/*','admin-home/media-upload/page','admin-home/menu','admin-home/menu-edit/*','admin-home/widgets','admin-home/widgets/*','admin-home/popup-builder/*','admin-home/form-builder/*'])): ?> active <?php endif; ?> ">
+                    <?php if(request()->is(['admin-home/appearance-settings/topbar/*','admin-home/appearance-settings/navbar/*','admin-home/appearance-settings/home-variant/*','admin-home/media-upload/page','admin-home/appearance-settings/general-menu','admin-home/menu-edit/*','admin-home/widgets','admin-home/widgets/*','admin-home/popup-builder/*','admin-home/form-builder/*'])): ?> active <?php endif; ?> ">
                         <a href="javascript:void(0)" aria-expanded="true"><i class="ti-settings"></i>
                             <span><?php echo e(__('Appearance Settings')); ?></span></a>
                         <ul class="collapse ">
@@ -450,21 +456,31 @@
                                     </a>
                                 </li>
                             <?php endif; ?>
-                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('appearance-menu-manage-list')): ?>
-                                <li
-                                        class="main_dropdown
-                                        <?php echo e(active_menu('admin-home/menu')); ?>
 
-                                        <?php if(request()->is('admin-home/menu-edit/*')): ?> active <?php endif; ?>
-                                                ">
-                                    <a href="javascript:void(0)" aria-expanded="true">
-                                        <?php echo e(__('Menus Manage')); ?></a>
-                                    <ul class="collapse">
-                                        <li class="<?php echo e(active_menu('admin-home/menu')); ?>"><a
-                                                    href="<?php echo e(route('admin.menu')); ?>"><?php echo e(__('All Menus')); ?></a></li>
-                                    </ul>
-                                </li>
+                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('appearance-menu-manage-list')): ?>
+                            <li class="main_dropdown <?php echo e(active_menu('admin-home/appearance-settings/general-menu')); ?>">
+                                <a href="<?php echo e(route('admin.general.menu')); ?>"
+                                   aria-expanded="true">
+                                    <?php echo e(__('Menu Manage')); ?>
+
+                                </a>
+                            </li>
                             <?php endif; ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('appearance-widget-manage')): ?>
                                 <li
                                         class="main_dropdown

@@ -732,3 +732,10 @@ ul.timeline > li > a {
     border-right: 15px solid transparent;
 }
 
+.breadcrumb-inner {
+    color: #fff;
+}
+
+.breadcrumb-inner li{
+    display: inline-block;
+}
