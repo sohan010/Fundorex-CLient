@@ -70,6 +70,6 @@
             {{ $donation->links() }}
         </div>
         @else
-            <div class="alert alert-warning">{{__('No Donation Found')}}</div>
+            <div class="alert alert-warning mt-3">{{__('No Donation Found')}}</div>
         @endif
 @endsection

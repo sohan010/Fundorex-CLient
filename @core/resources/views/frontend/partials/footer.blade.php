@@ -36,8 +36,10 @@
 <!-- load all script -->
 <script src="{{asset('assets/frontend/js/jquery-3.4.1.min.js')}}"></script>
 <script src="{{asset('assets/frontend/js/jquery-migrate-3.1.0.min.js')}}"></script>
+<script src="{{asset('assets/common/js/bootstrap.min.js')}}"></script>
 <script src="{{asset('assets/frontend/js/bootstrap.bundle.min.js')}}"></script>
 <script src="{{asset('assets/frontend/js/slick.min.js')}}"></script>
+<script src="{{asset('assets/backend/js/sweetalert2.js')}}"></script>
 <script src="{{asset('assets/frontend/js/custom.js')}}"></script>
 
 @include('frontend.partials.google-captcha')
@@ -53,6 +55,9 @@
 
 <x-sweet-alert-msg/>
 @yield('scripts')
+
+
+
 
 
 </body>

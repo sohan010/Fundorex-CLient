@@ -24,9 +24,9 @@
                     </ul>
                     <div class="btn-wrapper margin-top-40">
                         @if(auth()->guard('web')->check())
-                            <a href="{{route('user.home')}}" class="boxed-btn">{{__('Go To Dashboard')}}</a>
+                            <a href="{{route('user.home')}}" class="btn btn-success">{{__('Go To Dashboard')}}</a>
                         @else
-                            <a href="{{url('/')}}" class="boxed-btn">{{__('Back To Home')}}</a>
+                            <a href="{{url('/')}}" class="btn btn-primary">{{__('Back To Home')}}</a>
                         @endif
                     </div>
                 </div>
@@ -53,9 +53,9 @@
                             </div>
                             <div class="btn-wrapper text-center">
                                 @if(!empty($package_details->url_status))
-                                    <a class="order-btn boxed-btn" href="{{route('frontend.plan.order',$package_details->id)}}">{{$package_details->btn_text}}</a>
+                                    <a class="btn btn-primary" href="{{route('frontend.plan.order',$package_details->id)}}">{{$package_details->btn_text}}</a>
                                 @else
-                                    <a class="order-btn boxed-btn" href="{{$package_details->btn_url}}">{{$package_details->btn_text}}</a>
+                                    <a class="btn btn-warning" href="{{$package_details->btn_url}}">{{$package_details->btn_text}}</a>
                                 @endif
                             </div>
                         </div>

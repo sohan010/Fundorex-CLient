@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Admin;
+use App\Blog;
 use App\Cause;
 use App\CauseCategory;
 use App\CauseLogs;
@@ -264,6 +265,16 @@ class FrontendCausesController extends Controller
             abort(404);
         }
         return view(self::BASE_PATH.'user-donations',compact('user_donations','user_info'));
+    }
+
+    public function donation_search(Request $request)
+    {
+
+        $search_term = $request->search;
+        $all_donations = Cause::Where('title', 'LIKE', '%' . $search_term . '%')
+            ->orderBy('id', 'desc')->paginate(4);
+
+        return view('frontend.donations.donation-search',compact('all_donations','search_term'));
     }
 
 

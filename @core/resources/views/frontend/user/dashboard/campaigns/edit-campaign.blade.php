@@ -177,14 +177,14 @@
                                           placeholder="{{__('faq description')}}"></textarea>
                             </div>
                             <div class="action-wrap">
-                                <span class="add"><i class="fas fa-plus"></i></span>
-                                <span class="remove"><i class="fas fa-trash"></i></span>
+                                <span class="add "><i class="fas fa-plus"></i></span>
+                                <span class="remove"><i class="fas fa-minus"></i></span>
                             </div>
                         </div>
                     @endforelse
                 </div>
                 <button id="update" type="submit"
-                        class="submit-btn margin-top-40">{{__('Update Campaign')}}</button>
+                        class="btn btn-primary mt-3">{{__('Update Campaign')}}</button>
             </div>
         </div>
     </form>

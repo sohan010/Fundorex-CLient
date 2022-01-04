@@ -37,8 +37,10 @@
 <!-- load all script -->
 <script src="<?php echo e(asset('assets/frontend/js/jquery-3.4.1.min.js')); ?>"></script>
 <script src="<?php echo e(asset('assets/frontend/js/jquery-migrate-3.1.0.min.js')); ?>"></script>
+<script src="<?php echo e(asset('assets/common/js/bootstrap.min.js')); ?>"></script>
 <script src="<?php echo e(asset('assets/frontend/js/bootstrap.bundle.min.js')); ?>"></script>
 <script src="<?php echo e(asset('assets/frontend/js/slick.min.js')); ?>"></script>
+<script src="<?php echo e(asset('assets/backend/js/sweetalert2.js')); ?>"></script>
 <script src="<?php echo e(asset('assets/frontend/js/custom.js')); ?>"></script>
 
 <?php echo $__env->make('frontend.partials.google-captcha', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
@@ -65,6 +67,9 @@
 <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php echo $__env->yieldContent('scripts'); ?>
+
+
+
 
 
 </body>

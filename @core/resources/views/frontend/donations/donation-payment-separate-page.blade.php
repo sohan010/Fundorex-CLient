@@ -25,11 +25,12 @@
     @php
         $selected_amount = request()->get('number');
     @endphp
-    <section class="blog-content-area padding-top-120 padding-bottom-90">
+    <section class="blog-content-area mt-5">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-6">
                     <div class="donation_wrapper">
+
                         <div class="btn-wrapper">
                             <a href="{{route('frontend.donations.single',$donation->slug)}}"
                                class="goback-btn">{{__('Go Back')}}</a>
@@ -89,7 +90,7 @@
                             @endif
                             <div class="donate-seperate-page-button">
                                 <div class="btn-wrapper">
-                                    <button class="boxed-btn reverse-color btn-sm"
+                                    <button class="btn btn-primary"
                                             type="submit">{{get_static_option('donation_single_form_button_text')}}</button>
                                 </div>
                             </div>
@@ -140,6 +141,7 @@
 @endsection
 
 @section('scripts')
+    <script src="{{asset('assets/frontend/js/jquery-3.4.1.min.js')}}"></script>
     <script src="{{asset('assets/frontend/js/jQuery.rProgressbar.min.js')}}"></script>
     <script>
         (function ($) {
@@ -220,4 +222,6 @@
 
         })(jQuery);
     </script>
+
+
 @endsection

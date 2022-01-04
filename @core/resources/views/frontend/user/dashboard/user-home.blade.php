@@ -5,17 +5,6 @@
 
 @section('section')
     <div class="row">
-        @if(!empty(get_static_option('events_module_status')))
-            <div class="col-lg-6">
-                <div class="user-dashboard-card margin-bottom-30">
-                    <div class="icon"><i class="fas fa-calendar-alt"></i></div>
-                    <div class="content">
-                        <h4 class="title">{{get_static_option('events_page_name')}} {{__('Booking')}}</h4>
-                        <span class="number">{{$event_attendances}}</span>
-                    </div>
-                </div>
-            </div>
-        @endif
 
 
         @if(get_static_option('donations_module_status'))

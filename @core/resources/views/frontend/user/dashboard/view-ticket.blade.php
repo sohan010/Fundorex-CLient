@@ -219,7 +219,7 @@
     </style>
 @endsection
 @section('content')
-    <div class="error-page-content padding-120">
+    <div class="error-page-content mt-5">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-8">

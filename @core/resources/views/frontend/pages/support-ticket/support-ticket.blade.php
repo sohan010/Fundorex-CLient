@@ -10,10 +10,11 @@
     <meta name="tags" content="{{get_static_option('about_page_meta_tags')}}">
 @endsection
 @section('content')
-    <section class="support-ticket-page-area padding-top-120 padding-bottom-120">
+    <section class="support-ticket-page-area my-5">
         <div class="container">
             <div class="row justify-content-center">
                <div class="col-lg-8">
+                   <a href="{{url('/')}}" class="pull-right btn btn-info text-white">{{__('Go Home')}}</a>
                    <div class="support-ticket-wrapper">
                        @if(auth()->guard('web')->check())
                            <h3 class="title">{{get_static_option('support_ticket_form_title')}}</h3>
@@ -52,7 +53,7 @@
                                    <textarea name="description"class="form-control" cols="30" rows="10" placeholder="{{__('Description')}}"></textarea>
                                </div>
                               <div class="btn-wrapper text-center">
-                                  <button type="submit">{{get_static_option('support_ticket_button_text')}}</button>
+                                  <button type="submit" class="btn btn-primary">{{get_static_option('support_ticket_button_text')}}</button>
                               </div>
                            </form>
                        @else

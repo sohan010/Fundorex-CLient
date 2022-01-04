@@ -99,11 +99,13 @@
                     </tbody>
                 </table>
             </div>
-            <div class="blog-pagination">
-                {{ $all_tickets->links() }}
-            </div>
+
+        <div class="blog-pagination">
+            {{ $all_tickets->links() }}
+        </div>
+
         @else
-            <div class="alert alert-warning">{{__('Nothing Found')}}</div>
+            <div class="alert alert-warning mt-5">{{__('Nothing Found')}}</div>
         @endif
 
 @endsection
@@ -112,7 +114,6 @@
     <script>
         (function (){
             "use strict";
-
             $(document).on('click','.change_priority',function (e){
                 e.preventDefault();
                 //get value

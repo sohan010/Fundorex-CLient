@@ -302,7 +302,7 @@
             </div>
 
             <div class="btn-wrapper">
-              <button type="submit" class="boxed-btn reverse-color">{{__('Save changes')}}</button>
+              <button type="submit" class="btn btn-primary mt-3">{{__('Save changes')}}</button>
           </div>
         </form>
     </div>

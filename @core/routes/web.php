@@ -114,6 +114,7 @@ Route::group(['middleware' =>['setlang:frontend','globalVariable','maintains_mod
 
         //Client Routes
         Route::get('/all-donor-page','FrontendCausesController@all_donor_page')->name('frontend.donation.all.donor.page');
+        Route::get('/donation-search','FrontendCausesController@donation_search')->name('frontend.donation.search');
 
 
         Route::post('/'.$donation_page_slug,'CausesLogController@store_donation_logs')->name('frontend.donations.log.store');

@@ -131,13 +131,13 @@
                                 <textarea name="faq[description][]" class="form-control" placeholder="{{__('faq description')}}"></textarea>
                             </div>
                             <div class="action-wrap">
-                                <span class="add"><i class="fas fa-plus"></i></span>
-                                <span class="remove"><i class="fas fa-minus"></i></span>
+                                <span class="add btn btn-success btn-sm"><i class="fas fa-plus"></i></span>
+                                <span class="remove btn btn-danger btn-sm"><i class="fas fa-minus"></i></span>
                             </div>
                         </div>
                     </div>
 
-                    <button id="submit" type="submit" class="submit-btn margin-top-40 reverse-color margin-top-50">{{__('Publish Campaign')}}</button>
+                    <button id="submit" type="submit" class="btn btn-primary mt-3">{{__('Publish Campaign')}}</button>
                 </div>
             </div>
         </form>
@@ -148,6 +148,7 @@
     </x-media.markup>
 @endsection
 @section('scripts')
+    <script src="{{asset('assets/frontend/js/jquery-3.4.1.min.js')}}"></script>
   <script src="{{asset('assets/backend/js/summernote-bs4.js')}}"></script>
   <script src="{{asset('assets/backend/js/bootstrap-tagsinput.js')}}"></script>
     <script>

@@ -63,8 +63,14 @@
 {{--                        </div>--}}
 
                         <div class="goal">
-                            <h4 class="raised">{{__('Raised')}}: {{amount_with_currency_symbol($donation->raised ?? 0 )}}</h4>
-                            <h4 class="raised">{{__('Goal')}}: {{amount_with_currency_symbol($donation->amount)}}</h4>
+                            <div class="left">
+                                <span class="title">Terkumpul</span>
+                                <h4 class="raised">{{__('Raised')}}: {{amount_with_currency_symbol($donation->raised ?? 0 )}}</h4>
+                            </div>
+                            <div class="right">
+                                <span class="title">Target</span>
+                                <h4 class="raised">{{__('Goal')}}: {{amount_with_currency_symbol($donation->amount)}}</h4>
+                            </div>
                         </div>
 
                         <!-- tab -->
@@ -120,7 +126,7 @@
                             {{--<a href="" type="button" class="btn btn-outline-success"><i class="bi bi-share share-icon"></i> Bagikan</a>--}}
                             <div class="share-list-icon">
                                 <h5 class="share-title"> {{__('Share:')}} </h5>
-                                <ul>
+                                <ul class="social-links">
                                     @php
                                         $image_url = get_attachment_image_by_id($donation->image);
                                         $img_url = $image_url['img_url'] ?? '';
@@ -130,7 +136,7 @@
                             </div>
                         </div>
                         <div class="col-7 d-grid float-start pl-5 pt-3">
-                            <a href="" type="button" class="btn btn-outline-success">Donasi</a>
+                            <a href="{{ route('frontend.donation.in.separate.page',$donation->id) }}"  class="btn btn-outline-success">Donasi</a>
                         </div>
                     </div>
                 </div>

@@ -1,9 +1,14 @@
 @extends('frontend.user.dashboard.user-master')
+
+@section('style')
+    <link rel="stylesheet" href="{{asset('assets/common/css/bootstrap.min.css')}}">
+@endsection
+
 @section('section')
     <div class="heading-wrap d-flex justify-content-between margin-bottom-25">
         <h4 class="title">{{__('All Withdraws')}}</h4>
         <div class="btn-wrapper">
-            <a href="#" data-toggle="modal" data-target="#donation_withdraw_modal" class="boxed-btn reverse-color">{{__('New Withdraw')}}</a>
+            <a href="#" data-toggle="modal" data-target="#donation_withdraw_modal" class="btn btn-info mb-3">{{__('New Withdraw')}}</a>
         </div>
     </div>
     <div class="table-responsive">
@@ -96,7 +101,7 @@
                                 <textarea name="additional_comment_by_user" cols="4" rows="4" class="form-control"></textarea>
                                 <span class="info-text">{{__('leave any additional comment if you have any')}}</span>
                             </div>
-                            <button type="submit" class="submit-btn">{{__('Submit')}}</button>
+                            <button type="submit" class="btn btn-primary">{{__('Submit')}}</button>
 
                         </div>
                     </div>
@@ -108,6 +113,7 @@
 
 
 @section('scripts')
+    <script src="{{asset('assets/common/js/bootstrap.min.js')}}"></script>
     <script>
       <x-btn.submit/>
       (function($){

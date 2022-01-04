@@ -66,8 +66,14 @@
 
 
                         <div class="goal">
-                            <h4 class="raised"><?php echo e(__('Raised')); ?>: <?php echo e(amount_with_currency_symbol($donation->raised ?? 0 )); ?></h4>
-                            <h4 class="raised"><?php echo e(__('Goal')); ?>: <?php echo e(amount_with_currency_symbol($donation->amount)); ?></h4>
+                            <div class="left">
+                                <span class="title">Terkumpul</span>
+                                <h4 class="raised"><?php echo e(__('Raised')); ?>: <?php echo e(amount_with_currency_symbol($donation->raised ?? 0 )); ?></h4>
+                            </div>
+                            <div class="right">
+                                <span class="title">Target</span>
+                                <h4 class="raised"><?php echo e(__('Goal')); ?>: <?php echo e(amount_with_currency_symbol($donation->amount)); ?></h4>
+                            </div>
                         </div>
 
                         <!-- tab -->
@@ -125,7 +131,7 @@
                             
                             <div class="share-list-icon">
                                 <h5 class="share-title"> <?php echo e(__('Share:')); ?> </h5>
-                                <ul>
+                                <ul class="social-links">
                                     <?php
                                         $image_url = get_attachment_image_by_id($donation->image);
                                         $img_url = $image_url['img_url'] ?? '';
@@ -136,7 +142,7 @@
                             </div>
                         </div>
                         <div class="col-7 d-grid float-start pl-5 pt-3">
-                            <a href="" type="button" class="btn btn-outline-success">Donasi</a>
+                            <a href="<?php echo e(route('frontend.donation.in.separate.page',$donation->id)); ?>"  class="btn btn-outline-success">Donasi</a>
                         </div>
                     </div>
                 </div>
