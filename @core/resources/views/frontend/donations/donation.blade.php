@@ -21,7 +21,8 @@
                     <div class="col-xl-4 col-lg-4 col-md-4 col-6 float-start p-3px">
                         <div class="card">
                             {!! render_image_markup_by_attachment_id($data->image) !!}
-                            <a href="{{route('frontend.donations.single',$data->slug)}}"><span class="judulCampaignMendesak">{{$data->title ?? __('No Title')}}</span></a>
+                            <div class="card-custom-content">
+                            <a href="{{route('frontend.donations.single',$data->slug)}}" class="main-title"><span class="judulCampaignMendesak">{{$data->title ?? __('No Title')}}</span></a>
                             <p>Terkumpul</p>
                             <div class="progress-content">
                             <span class="padding-progressbar">
@@ -43,6 +44,7 @@
                             </div>
 
                             <div class="footer-CampaignMendesak"><span class="text-start">1000 donatur</span><span class="text-end">10 hari lagi</span></div>
+                        </div>
                         </div>
                     </div>
                 @endforeach

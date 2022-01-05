@@ -4,20 +4,20 @@
 // firstTab.show()
 
 // ProgreeBar js
-// var progressBar = $('.donation-progress');
-//
-// if (progressBar.length){
-//     $.each(progressBar,function (value){
-//         var el = $(this);
-//         progressBarInit(el,el.data('percentage'));
-//     })
-// }
-// function progressBarInit(selector,percentage){
-//     selector.rProgressbar({
-//         percentage: percentage,
-//         fillBackgroundColor: '#f1ae44'
-//     });
-// }
+var progressBar = $('.donation-progress');
+
+if (progressBar.length){
+    $.each(progressBar,function (value){
+        var el = $(this);
+        progressBarInit(el,el.data('percentage'));
+    })
+}
+function progressBarInit(selector,percentage){
+    selector.rProgressbar({
+        percentage: percentage,
+        fillBackgroundColor: '#f1ae44'
+    });
+}
 
 
 
@@ -30,4 +30,8 @@ $('.slick-slider-active').slick({
     autoplay: true,
     autoplaySpeed: 2000,
     infinite: true,
+    arrow: true,
+    prevArrow: '<div class="prev-arrow"><i class="fas fa-angle-left"></i></div>',
+    nextArrow: '<div class="next-arrow"> <i class="fas fa-angle-right"></i></div>',
 });
+

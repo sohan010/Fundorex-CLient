@@ -6,6 +6,14 @@
     <div class="row pl-25 pr-15">
         <div class="col-xl-12 col-lg-12 col-md-12 col-12 mx-auto CampaignMendesak pt-4">
 
+            <?php if(empty($search_term)): ?>
+
+                <div class="alert alert-warning">
+                    <?php echo e(__('Please enter what you want to search..!')); ?>
+
+                </div>
+           <?php else: ?>
+
             <div class="scrolling-wrapper row mt-4 pb-4 pt-2 contentResponsive">
                 <?php $__empty_1 = true; $__currentLoopData = $all_donations; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $data): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                     <div class="col-xl-4 col-lg-4 col-md-4 col-6 float-start p-3px">
@@ -49,6 +57,7 @@
                     </nav>
                 </div>
             </div>
+           <?php endif; ?>
         </div>
     </div>
 

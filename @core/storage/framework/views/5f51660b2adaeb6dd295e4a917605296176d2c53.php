@@ -28,7 +28,7 @@
 
                     <span class="float-start saldoText">Saldo anda</span><br><span class="jumlahSaldo">Rp 0</span>
                     <a href="" class="btn btn-success"><i class="bi bi-plus-lg plus-lg-icon"></i> Isi saldo</a>
-                    <a href="<?php echo e(url('/')); ?>" class="btn btn-warning"> <?php echo e(__('Home')); ?></a>
+                    <a href="<?php echo e(url('/')); ?>" class="btn btn-warning" target="_blank"> <?php echo e(__('Home')); ?></a>
                 </div>
             </div>
         </div>
@@ -64,7 +64,7 @@
 
                     <li><a href="<?php echo e(route('user.home.edit.profile')); ?>"><img src="<?php echo e(asset('assets/frontend/img/pengaturan.png')); ?>" class="img-fluid" alt="Donasi - Profile"> <?php echo e(__('Edit Profile')); ?></a></li>
                     <li><a href="<?php echo e(route('user.home.change.password')); ?>"><img src="<?php echo e(asset('assets/frontend/img/pengaturan.png')); ?>" class="img-fluid " alt="Donasi - Profile"> <?php echo e(__('Change Password')); ?></a></li>
-                    <li><a href="<?php echo e(route('frontend.user.logout')); ?>"><img src="<?php echo e(asset('assets/frontend/img/keluar.png')); ?>" class="img-fluid" alt="Donasi - Profile"><?php echo e(__('Logout')); ?></a></li>
+                    <li><a href="<?php echo e(route('frontend.user.logout')); ?>"><img src="<?php echo e(asset('assets/frontend/img/keluar.png')); ?>" class="img-fluid d-inline-block pr-2" alt="Donasi - Profile"><?php echo e(__('Logout')); ?></a></li>
                 </ul>
             </div>
         </div>

@@ -230,11 +230,13 @@
                         </li>
                     @endcan
 
+                    @can('banner-list')
                     <li class="main_dropdown {{active_menu('admin-home/banner/all')}}">
                         <a href="{{route('admin.banner')}}" aria-expanded="true"><i
                                     class="ti-control-forward"></i>
                             <span>{{__('Banners')}}</span></a>
                     </li>
+                    @endcan
 
                     @can('counterup-list')
                         <li class="{{active_menu('admin-home/counterup/all')}}">

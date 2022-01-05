@@ -6,12 +6,20 @@
     <div class="row pl-25 pr-15">
         <div class="col-xl-12 col-lg-12 col-md-12 col-12 mx-auto CampaignMendesak pt-4">
 
+            @if(empty($search_term))
+
+                <div class="alert alert-warning">
+                    {{__('Please enter what you want to search..!')}}
+                </div>
+           @else
+
             <div class="scrolling-wrapper row mt-4 pb-4 pt-2 contentResponsive">
                 @forelse($all_donations as $data)
                     <div class="col-xl-4 col-lg-4 col-md-4 col-6 float-start p-3px">
                         <div class="card">
                             {!! render_image_markup_by_attachment_id($data->image) !!}
-                            <a href="{{route('frontend.donations.single',$data->slug)}}"><span class="judulCampaignMendesak">{{$data->title ?? __('No Title')}}</span></a>
+                            <div class="card-custom-content">
+                            <a href="{{route('frontend.donations.single',$data->slug)}}" class="main-title"><span class="judulCampaignMendesak">{{$data->title ?? __('No Title')}}</span></a>
                             <p>Terkumpul</p>
                             <div class="progress-content">
                             <span class="padding-progressbar">
@@ -35,6 +43,7 @@
                             <div class="footer-CampaignMendesak"><span class="text-start">1000 donatur</span><span class="text-end">10 hari lagi</span></div>
                         </div>
                     </div>
+                    </div>
                 @empty
                     <div class="alert alert-danger">
                         {{__('Nothing found related to').' '.$search_term}}
@@ -46,6 +55,7 @@
                     </nav>
                 </div>
             </div>
+           @endif
         </div>
     </div>
 {{--    <section class="blog-content-area padding-top-100 padding-bottom-80">--}}

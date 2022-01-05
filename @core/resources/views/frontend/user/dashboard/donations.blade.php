@@ -29,14 +29,14 @@
                                         <form action="{{route('frontend.donation.invoice.generate')}}"  method="post">
                                             @csrf
                                             <input type="hidden" name="id" id="invoice_generate_order_field" value="{{$data->id}}">
-                                            <button class="btn btn-secondary btn-small" type="submit">{{__('Invoice')}}</button>
+                                            <button class="btn btn-secondary btn-small btn-01" type="submit">{{__('Invoice')}}</button>
                                         </form>
                                     @endif
                                 </div>
                             </td>
-                            <td>
+                            <td class="space-01">
                                 @if($data->status == 'pending')
-                                    <span class="alert alert-warning text-capitalize alert-sm alert-small">{{__($data->status)}}</span>
+                                    <span class="alert alert-warning text-capitalize alert-sm alert-small btn-01">{{__($data->status)}}</span>
                                     @if( $data->payment_gateway != 'manual_payment')
                                         <form action="{{route('frontend.donations.log.store')}}" method="post" enctype="multipart/form-data">
                                             @csrf
@@ -57,7 +57,7 @@
                                 @elseif($data->status == 'cancel')
                                     <span class="alert alert-danger text-capitalize alert-sm alert-small" style="display: inline-block">{{__($data->status)}}</span>
                                 @else
-                                    <span class="alert alert-success text-capitalize alert-sm alert-small" style="display: inline-block">{{__($data->status)}}</span>
+                                    <span class="alert alert-success text-capitalize alert-sm alert-small btn-01" style="display: inline-block">{{__($data->status)}}</span>
                                 @endif
 
                             </td>

@@ -17,6 +17,7 @@ use App\Mail\BasicMail;
 use App\Http\Controllers\Controller;
 use App\User;
 use Barryvdh\DomPDF\Facade as PDF;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -52,6 +53,16 @@ class FrontendCausesController extends Controller
         $all_donors = CauseLogs::where('cause_id', $donation->id)->take(3)->get();
         $all_related_cause = Cause::Where('categories_id',$donation->categories_id)->orderBy('id', 'desc')->take(6)->get();
         $withdraw_logs = DonationWithdraw::take(3)->get();
+        $donors_count =  CauseLogs::where('cause_id', $donation->id)->count();
+
+        $todayDate = Carbon::now()->format('Y-m-d');
+        $deadline_count = Cause::where('id', $donation->id)->where('deadline', '>',$todayDate )->first();//->deadline->diffInDays($todayDate);
+
+         $deadline =  new Carbon($deadline_count->deadline ?? '');
+         $time_remaining = $deadline->diffInDays($todayDate);
+
+
+
 
         return view(self::BASE_PATH . 'donation-single')->with([
             'all_donations' => $all_donations,
@@ -61,6 +72,8 @@ class FrontendCausesController extends Controller
             'all_donors' => $all_donors,
             'all_related_cause' => $all_related_cause,
             'withdraw_logs' => $withdraw_logs,
+            'donors_count' => $donors_count,
+            'time_remaining' => $time_remaining,
             'type' => request()->get('type') ?? null
         ]);
     }
@@ -269,7 +282,6 @@ class FrontendCausesController extends Controller
 
     public function donation_search(Request $request)
     {
-
         $search_term = $request->search;
         $all_donations = Cause::Where('title', 'LIKE', '%' . $search_term . '%')
             ->orderBy('id', 'desc')->paginate(4);

@@ -28,7 +28,7 @@
     <!-- banner -->
     <div class="row pl-25 pr-15">
         <div class="col-xl-12 col-lg-12 col-md-12 col-12 mx-auto">
-            <div class="carousel-all slick-slider-active">
+            <div class="carousel-all slick-slider-active header">
                 <?php $__currentLoopData = $all_header_slider; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $data): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <div class="slick-slider-item">
                         <?php echo render_image_markup_by_attachment_id($data->image); ?>
@@ -71,43 +71,27 @@
                         <div class="card">
                             <?php echo render_image_markup_by_attachment_id($data->image); ?>
 
-                            <a href="<?php echo e(route('frontend.donations.single',$data->slug)); ?>"><span
-                                        class="judulCampaignMendesak"><?php echo e($data->title ?? __('No Title')); ?></span></a>
+                            <div class="card-custom-content">
+                            <a href="<?php echo e(route('frontend.donations.single',$data->slug)); ?>" class="main-title"><span
+                                        class="judulCampaignMendesak "><?php echo e($data->title ?? __('No Title')); ?></span></a>
                             <p>Terkumpul</p>
                             <div class="progress-content">
-                            <span class="padding-progressbar">
-                                <div class="progress">
-                                    <div class="progress-bar bg-success" role="progressbar" style="width: 25%"
-                                         aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                            </span>
-
-                                
-                                
-                                
-                                
-                                
-
                                 <div class="progress-item">
                                     <div class="single-progressbar">
-                                        <div class="donation-progress"
-                                             data-percentage="<?php echo e(get_percentage($data->amount,$data->raised)); ?>"></div>
+                                        <div class="donation-progress" data-percentage="<?php echo e(get_percentage($data->amount,$data->raised)); ?>"></div>
                                     </div>
                                 </div>
-
                                 <div class="goal">
-                                    <h4 class="raised"><?php echo e(__('Raised')); ?>
-
-                                        : <?php echo e(amount_with_currency_symbol($data->raised ?? 0 )); ?></h4>
-                                    <h4 class="raised"><?php echo e(__('Goal')); ?>
-
-                                        : <?php echo e(amount_with_currency_symbol($data->amount)); ?></h4>
+                                    <h4 class="raised"><?php echo e(__('Raised')); ?>:  <span class="main-color-three"><?php echo e(amount_with_currency_symbol($data->raised ?? 0 )); ?> </span></h4>
+                                    <h4 class="raised"><?php echo e(__('Goal')); ?>: <span class="danger-color"><?php echo e(amount_with_currency_symbol($data->amount)); ?></span></h4>
                                 </div>
                             </div>
 
                             <div class="footer-CampaignMendesak"><span class="text-start">1000 donatur</span><span
                                         class="text-end">10 hari lagi</span></div>
                         </div>
+                        </div>
+
                     </div>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </div>
@@ -153,7 +137,8 @@
                         <div class="card">
                             <?php echo render_image_markup_by_attachment_id($data->image); ?>
 
-                            <a href="<?php echo e(route('frontend.donations.single',$data->slug)); ?>"><span
+                            <div class="card-custom-content">
+                            <a href="<?php echo e(route('frontend.donations.single',$data->slug)); ?>" class="main-title"><span
                                         class="judulCampaignMendesak"><?php echo e($data->title ?? __('No Title')); ?></span></a>
                             <p>Terkumpul</p>
                             <div class="progress-item">
@@ -172,6 +157,8 @@
                             <div class="footer-CampaignMendesak"><span class="text-start">1000 donatur</span><span
                                         class="text-end">10 hari lagi</span></div>
                         </div>
+                        </div>
+
                     </div>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </div>

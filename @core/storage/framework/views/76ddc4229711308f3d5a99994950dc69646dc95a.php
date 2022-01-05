@@ -28,14 +28,14 @@
                                         <form action="<?php echo e(route('frontend.donation.invoice.generate')); ?>"  method="post">
                                             <?php echo csrf_field(); ?>
                                             <input type="hidden" name="id" id="invoice_generate_order_field" value="<?php echo e($data->id); ?>">
-                                            <button class="btn btn-secondary btn-small" type="submit"><?php echo e(__('Invoice')); ?></button>
+                                            <button class="btn btn-secondary btn-small btn-01" type="submit"><?php echo e(__('Invoice')); ?></button>
                                         </form>
                                     <?php endif; ?>
                                 </div>
                             </td>
-                            <td>
+                            <td class="space-01">
                                 <?php if($data->status == 'pending'): ?>
-                                    <span class="alert alert-warning text-capitalize alert-sm alert-small"><?php echo e(__($data->status)); ?></span>
+                                    <span class="alert alert-warning text-capitalize alert-sm alert-small btn-01"><?php echo e(__($data->status)); ?></span>
                                     <?php if( $data->payment_gateway != 'manual_payment'): ?>
                                         <form action="<?php echo e(route('frontend.donations.log.store')); ?>" method="post" enctype="multipart/form-data">
                                             <?php echo csrf_field(); ?>
@@ -56,7 +56,7 @@
                                 <?php elseif($data->status == 'cancel'): ?>
                                     <span class="alert alert-danger text-capitalize alert-sm alert-small" style="display: inline-block"><?php echo e(__($data->status)); ?></span>
                                 <?php else: ?>
-                                    <span class="alert alert-success text-capitalize alert-sm alert-small" style="display: inline-block"><?php echo e(__($data->status)); ?></span>
+                                    <span class="alert alert-success text-capitalize alert-sm alert-small btn-01" style="display: inline-block"><?php echo e(__($data->status)); ?></span>
                                 <?php endif; ?>
 
                             </td>

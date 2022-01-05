@@ -1,0 +1,18 @@
+@media (max-width: 767px) {
+    .input-group {
+        width: 100%;
+    }
+
+    .header img {
+        height: 600px;
+    }
+
+    .goal .raised {
+        font-size: 18px;
+    }
+
+    .card-custom-content .main-title {
+        font-size: 17px;
+        line-height: 22px;
+    }
+}

@@ -44,7 +44,7 @@
                           <li><strong>{{__('Created At')}}:</strong> {{date("d - M - Y", strtotime($data->created_at))}}</li>
 
                           <li><strong>{{__('Status')}}:</strong>
-                              <div class="status-wrap margin-top-10">
+                              <div class="status-wrap mt-3 my-2">
                                   <x-status-span :status="$data->status" />
                               </div>
                           </li>
@@ -53,7 +53,7 @@
                   <td>
 
                     <a href="{{route('user.campaign.edit',$data->id)}}"
-                       class="btn btn-primary text-white btn-sm"> <i class="fa fa-pencil"></i>
+                       class="btn btn-primary text-white btn-sm"><i class="fas fa-edit"></i>
                     </a>
                     <a tabindex="0" class="btn btn-danger btn-sm swal_delete_button text-light">
                         <i class="fa fa-trash"></i>

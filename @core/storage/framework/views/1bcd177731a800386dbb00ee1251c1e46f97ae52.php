@@ -232,11 +232,13 @@
                         </li>
                     <?php endif; ?>
 
+                    <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('banner-list')): ?>
                     <li class="main_dropdown <?php echo e(active_menu('admin-home/banner/all')); ?>">
                         <a href="<?php echo e(route('admin.banner')); ?>" aria-expanded="true"><i
                                     class="ti-control-forward"></i>
                             <span><?php echo e(__('Banners')); ?></span></a>
                     </li>
+                    <?php endif; ?>
 
                     <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('counterup-list')): ?>
                         <li class="<?php echo e(active_menu('admin-home/counterup/all')); ?>">

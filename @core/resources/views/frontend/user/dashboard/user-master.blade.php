@@ -27,7 +27,7 @@
 
                     <span class="float-start saldoText">Saldo anda</span><br><span class="jumlahSaldo">Rp 0</span>
                     <a href="" class="btn btn-success"><i class="bi bi-plus-lg plus-lg-icon"></i> Isi saldo</a>
-                    <a href="{{url('/')}}" class="btn btn-warning"> {{__('Home')}}</a>
+                    <a href="{{url('/')}}" class="btn btn-warning" target="_blank"> {{__('Home')}}</a>
                 </div>
             </div>
         </div>
@@ -62,7 +62,7 @@
 
                     <li><a href="{{route('user.home.edit.profile')}}"><img src="{{asset('assets/frontend/img/pengaturan.png')}}" class="img-fluid" alt="Donasi - Profile"> {{__('Edit Profile')}}</a></li>
                     <li><a href="{{route('user.home.change.password')}}"><img src="{{asset('assets/frontend/img/pengaturan.png')}}" class="img-fluid " alt="Donasi - Profile"> {{__('Change Password')}}</a></li>
-                    <li><a href="{{ route('frontend.user.logout') }}"><img src="{{asset('assets/frontend/img/keluar.png')}}" class="img-fluid" alt="Donasi - Profile">{{__('Logout')}}</a></li>
+                    <li><a href="{{ route('frontend.user.logout') }}"><img src="{{asset('assets/frontend/img/keluar.png')}}" class="img-fluid d-inline-block pr-2" alt="Donasi - Profile">{{__('Logout')}}</a></li>
                 </ul>
             </div>
         </div>

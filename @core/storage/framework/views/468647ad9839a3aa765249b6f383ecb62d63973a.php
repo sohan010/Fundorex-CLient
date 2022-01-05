@@ -77,7 +77,7 @@
                               enctype="multipart/form-data" class="donation-form-wrapper">
                             <?php echo csrf_field(); ?>
                             <input type="hidden" name="captcha_token" id="gcaptcha_token">
-                            <div class="amount_wrapper">
+                            <div class="amount_wrapper donat">
                                 <div class="suffix"><?php echo e(site_currency_symbol()); ?> <?php echo e(get_static_option('site_global_currency')); ?></div>
                                 <input type="hidden" name="cause_id" value="<?php echo e($donation->id); ?>">
                                 <input type="number" name="amount"
@@ -145,7 +145,7 @@
                           </span>
                             </div>
                         </div>
-                        <ul>
+                        <ul class="overview-01">
                             <li><span><?php echo e(__('Your Donation')); ?></span> <span
                                         class="price donation_amount"><?php echo e(amount_with_currency_symbol($selected_amount ?? $default_donation_amount)); ?></span>
                             </li>

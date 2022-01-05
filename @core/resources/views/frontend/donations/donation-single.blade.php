@@ -45,22 +45,22 @@
                     <a href="{{url('/')}}" class="detailBack">
                         <i class="bi bi-arrow-left-circle-fill arrow-left-circle-fill-icon"></i>
                     </a>
+                    <div class="single-custom-content">
+
                     <div class="card-body pl-25 pr-25">
                         <h5 class="fw-bold card-title">{{$donation->title ?? ''}}</h5>
 
-                        <h6><i class="bi bi-people-fill people-fill-icon"></i> 1000 Donatur
-                            <span class="p-5"><i class="bi bi-stopwatch-fill stopwatch-fill-icon"></i> 10 Hari lagi</span></h6>
+                        <h6><i class="bi bi-people-fill people-fill-icon"></i> {{$donors_count ?? ''}} Donatur
+                            <span class="p-5"><i class="bi bi-stopwatch-fill stopwatch-fill-icon"></i> {{$time_remaining}} Hari lagi</span></h6>
                         <p class="card-text">Dompet Dhuafa <i class="bi bi-check-circle-fill check-circle-fill-icon"></i></p>
 
-                        <div class="progress">
-                            <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
 
-{{--                        <div class="progress-item">--}}
-{{--                            <div class="single-progressbar">--}}
-{{--                                <div class="donation-progress" data-percentage="{{get_percentage($donation->amount,$donation->raised)}}"></div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
+
+                        <div class="progress-item">
+                            <div class="single-progressbar">
+                                <div class="donation-progress" data-percentage="{{get_percentage($donation->amount,$donation->raised)}}"></div>
+                            </div>
+                        </div>
 
                         <div class="goal">
                             <div class="left">
@@ -97,7 +97,7 @@
                                             @foreach($withdraw_logs as $with)
                                             <li>
                                                 <i class="bi bi-check-circle-fill check-circle-fill-icon"></i>
-                                                <a href="#">{{ date_format('d M Y',$with->created_at) }}</a>
+                                                <a href="#">{{ date('d M Y',strtotime($with->created_at)) }}</a>
                                                 <p>Penarikan dana sebesar {{amount_with_currency_symbol($with->withdraw_request_amount)}} ke Fundraiser </p>
                                             </li>
 
@@ -122,22 +122,25 @@
                             </div>
                         </div>
 
-                        <div class="col-5 d-grid float-start pr-5 pt-3">
-                            {{--<a href="" type="button" class="btn btn-outline-success"><i class="bi bi-share share-icon"></i> Bagikan</a>--}}
-                            <div class="share-list-icon">
-                                <h5 class="share-title"> {{__('Share:')}} </h5>
-                                <ul class="social-links">
-                                    @php
-                                        $image_url = get_attachment_image_by_id($donation->image);
-                                        $img_url = $image_url['img_url'] ?? '';
-                                    @endphp
-                                    {!! single_post_share(route('frontend.donations.single',$donation->slug), $donation->title, $img_url) !!}
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-7 d-grid float-start pl-5 pt-3">
-                            <a href="{{ route('frontend.donation.in.separate.page',$donation->id) }}"  class="btn btn-outline-success">Donasi</a>
-                        </div>
+                      <div class="row">
+                          <div class="col-5 d-grid float-start pr-5 pt-3">
+                              {{--<a href="" type="button" class="btn btn-outline-success"><i class="bi bi-share share-icon"></i> Bagikan</a>--}}
+                              <div class="share-list-icon">
+                                  <h5 class="share-title"> {{__('Share:')}} </h5>
+                                  <ul class="social-links">
+                                      @php
+                                          $image_url = get_attachment_image_by_id($donation->image);
+                                          $img_url = $image_url['img_url'] ?? '';
+                                      @endphp
+                                      {!! single_post_share(route('frontend.donations.single',$donation->slug), $donation->title, $img_url) !!}
+                                  </ul>
+                              </div>
+                          </div>
+                          <div class="col-7 d-grid float-start pl-5 pt-3 text-right">
+                              <a href="{{ route('frontend.donation.in.separate.page',$donation->id) }}"  class="btn btn-outline-success">Donasi</a>
+                          </div>
+                      </div>
+                    </div>
                     </div>
                 </div>
             </div>

@@ -48,22 +48,22 @@
                     <a href="<?php echo e(url('/')); ?>" class="detailBack">
                         <i class="bi bi-arrow-left-circle-fill arrow-left-circle-fill-icon"></i>
                     </a>
+                    <div class="single-custom-content">
+
                     <div class="card-body pl-25 pr-25">
                         <h5 class="fw-bold card-title"><?php echo e($donation->title ?? ''); ?></h5>
 
-                        <h6><i class="bi bi-people-fill people-fill-icon"></i> 1000 Donatur
-                            <span class="p-5"><i class="bi bi-stopwatch-fill stopwatch-fill-icon"></i> 10 Hari lagi</span></h6>
+                        <h6><i class="bi bi-people-fill people-fill-icon"></i> <?php echo e($donors_count ?? ''); ?> Donatur
+                            <span class="p-5"><i class="bi bi-stopwatch-fill stopwatch-fill-icon"></i> <?php echo e($time_remaining); ?> Hari lagi</span></h6>
                         <p class="card-text">Dompet Dhuafa <i class="bi bi-check-circle-fill check-circle-fill-icon"></i></p>
 
-                        <div class="progress">
-                            <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+
+
+                        <div class="progress-item">
+                            <div class="single-progressbar">
+                                <div class="donation-progress" data-percentage="<?php echo e(get_percentage($donation->amount,$donation->raised)); ?>"></div>
+                            </div>
                         </div>
-
-
-
-
-
-
 
                         <div class="goal">
                             <div class="left">
@@ -101,7 +101,7 @@
                                             <?php $__currentLoopData = $withdraw_logs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $with): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                             <li>
                                                 <i class="bi bi-check-circle-fill check-circle-fill-icon"></i>
-                                                <a href="#"><?php echo e(date_format('d M Y',$with->created_at)); ?></a>
+                                                <a href="#"><?php echo e(date('d M Y',strtotime($with->created_at))); ?></a>
                                                 <p>Penarikan dana sebesar <?php echo e(amount_with_currency_symbol($with->withdraw_request_amount)); ?> ke Fundraiser </p>
                                             </li>
 
@@ -127,23 +127,26 @@
                             </div>
                         </div>
 
-                        <div class="col-5 d-grid float-start pr-5 pt-3">
-                            
-                            <div class="share-list-icon">
-                                <h5 class="share-title"> <?php echo e(__('Share:')); ?> </h5>
-                                <ul class="social-links">
-                                    <?php
-                                        $image_url = get_attachment_image_by_id($donation->image);
-                                        $img_url = $image_url['img_url'] ?? '';
-                                    ?>
-                                    <?php echo single_post_share(route('frontend.donations.single',$donation->slug), $donation->title, $img_url); ?>
+                      <div class="row">
+                          <div class="col-5 d-grid float-start pr-5 pt-3">
+                              
+                              <div class="share-list-icon">
+                                  <h5 class="share-title"> <?php echo e(__('Share:')); ?> </h5>
+                                  <ul class="social-links">
+                                      <?php
+                                          $image_url = get_attachment_image_by_id($donation->image);
+                                          $img_url = $image_url['img_url'] ?? '';
+                                      ?>
+                                      <?php echo single_post_share(route('frontend.donations.single',$donation->slug), $donation->title, $img_url); ?>
 
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-7 d-grid float-start pl-5 pt-3">
-                            <a href="<?php echo e(route('frontend.donation.in.separate.page',$donation->id)); ?>"  class="btn btn-outline-success">Donasi</a>
-                        </div>
+                                  </ul>
+                              </div>
+                          </div>
+                          <div class="col-7 d-grid float-start pl-5 pt-3 text-right">
+                              <a href="<?php echo e(route('frontend.donation.in.separate.page',$donation->id)); ?>"  class="btn btn-outline-success">Donasi</a>
+                          </div>
+                      </div>
+                    </div>
                     </div>
                 </div>
             </div>

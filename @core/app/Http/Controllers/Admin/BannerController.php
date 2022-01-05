@@ -13,6 +13,10 @@ class BannerController extends Controller
     public function __construct()
     {
         $this->middleware('auth:admin');
+        $this->middleware('permission:banner-list|banner-create|banner-edit|banner-delete',['only' => ['index']]);
+        $this->middleware('permission:banner-create',['only' => ['store']]);
+        $this->middleware('permission:banner-edit',['only' => ['update']]);
+        $this->middleware('permission:banner-delete',['only' => ['delete','bulk_action']]);
     }
 
     public function index()

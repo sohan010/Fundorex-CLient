@@ -57,7 +57,7 @@
                           <li><strong><?php echo e(__('Created At')); ?>:</strong> <?php echo e(date("d - M - Y", strtotime($data->created_at))); ?></li>
 
                           <li><strong><?php echo e(__('Status')); ?>:</strong>
-                              <div class="status-wrap margin-top-10">
+                              <div class="status-wrap mt-3 my-2">
                                   <?php if (isset($component)) { $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4 = $component; } ?>
 <?php $component = $__env->getContainer()->make(Illuminate\View\AnonymousComponent::class, ['view' => 'components.status-span','data' => ['status' => $data->status]]); ?>
 <?php $component->withName('status-span'); ?>
@@ -77,7 +77,7 @@
                   <td>
 
                     <a href="<?php echo e(route('user.campaign.edit',$data->id)); ?>"
-                       class="btn btn-primary text-white btn-sm"> <i class="fa fa-pencil"></i>
+                       class="btn btn-primary text-white btn-sm"><i class="fas fa-edit"></i>
                     </a>
                     <a tabindex="0" class="btn btn-danger btn-sm swal_delete_button text-light">
                         <i class="fa fa-trash"></i>

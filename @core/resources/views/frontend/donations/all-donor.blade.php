@@ -13,14 +13,15 @@
 
 
     <div class="contatiner">
+       <div class="d-block">
+           <a href="{{url('/')}}" class="btn btn-primary ml-2 mt-3">
+               Go Back
+           </a>
+       </div>
         <!-- detail -->
         <div class="row mb-100 pt-4 pl-25 pr-25">
             <div class="col-xl-12 col-lg-12 col-md-12 col-12 mx-auto">
-                <div class="col">
-                    <a href="{{url('/')}}" class="detailBackDonatur">
-                        <i class="bi bi-arrow-left-short arrow-left-short-icon"></i>
-                    </a>
-                </div>
+
                 <div class="col text-center textDonatur mb-50">
                     Donatur
                 </div>
@@ -39,9 +40,10 @@
                                 <p class="testimoniDonatur">{{ optional($donor->cause)->title }}
                                     <br>{{$donor->created_at->diffForHUmans()}}</p>
                                   <hr>
-                                @endforeach
-                            @endif
+
                         </div>
+                        @endforeach
+                    @endif
                             <div class="col md-12 my-5">
                                 {{$all_donors->links()}}
                             </div>
