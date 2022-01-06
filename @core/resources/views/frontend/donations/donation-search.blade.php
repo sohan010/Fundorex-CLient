@@ -6,6 +6,9 @@
     <div class="row pl-25 pr-15">
         <div class="col-xl-12 col-lg-12 col-md-12 col-12 mx-auto CampaignMendesak pt-4">
 
+                <a class="btn btn-info my-3" href="{{url('/')}}">{{__('Go Home')}}</a>
+
+
             @if(empty($search_term))
 
                 <div class="alert alert-warning">

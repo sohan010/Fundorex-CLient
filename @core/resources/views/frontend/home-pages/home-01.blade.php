@@ -15,7 +15,6 @@
 
                             <button type="submit" class="btn btn-info">
                                 <i class="bi bi-search search-icon"></i>
-
                             </button>
                         </form>
                     </div>
@@ -70,7 +69,7 @@
                             <div class="card-custom-content">
                             <a href="{{route('frontend.donations.single',$data->slug)}}" class="main-title"><span
                                         class="judulCampaignMendesak ">{{$data->title ?? __('No Title')}}</span></a>
-                            <p>Terkumpul</p>
+
                             <div class="progress-content">
                                 <div class="progress-item">
                                     <div class="single-progressbar">
@@ -83,8 +82,7 @@
                                 </div>
                             </div>
 
-                            <div class="footer-CampaignMendesak"><span class="text-start">1000 donatur</span><span
-                                        class="text-end">10 hari lagi</span></div>
+
                         </div>
                         </div>
 
@@ -134,7 +132,7 @@
                             <div class="card-custom-content">
                             <a href="{{route('frontend.donations.single',$data->slug)}}" class="main-title"><span
                                         class="judulCampaignMendesak">{{$data->title ?? __('No Title')}}</span></a>
-                            <p>Terkumpul</p>
+
                             <div class="progress-item">
                                 <div class="single-progressbar">
                                     <div class="donation-progress"
@@ -147,8 +145,7 @@
                                     : {{amount_with_currency_symbol($data->raised ?? 0 )}}</h4>
                                 <h4 class="raised">{{__('Goal')}}: {{amount_with_currency_symbol($data->amount)}}</h4>
                             </div>
-                            <div class="footer-CampaignMendesak"><span class="text-start">1000 donatur</span><span
-                                        class="text-end">10 hari lagi</span></div>
+
                         </div>
                         </div>
 
@@ -158,6 +155,50 @@
         </div>
     </div>
     <!-- /campaign populer -->
+
+
+
+    <!-- Blog Section -->
+    <div class="row mb-100 pl-25 pr-15">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-12 mx-auto CampaignMendesak ">
+            <h6 class="judul">{!! get_static_option('home_page_blog_area_title') !!}</h6>
+            <h6 class="judulh6">{!! get_static_option('home_page_blog_area_subtitle') !!} </h6>
+            <span class="wrapLihatSemua">
+                    <a href="{{route('frontend.blog')}}" class="lihatSemuaCampaign">{{__('See All')}}</a>
+            </span>
+
+            <div class="scrolling-wrapper row mt-4 pb-4 pt-2 contentResponsive">
+                @foreach($all_blog as $key=> $data)
+                    <div class="col-4 float-start p-3px">
+                        <div class="card">
+                                        {!! render_image_markup_by_attachment_id($data->image) !!}
+                            <div class="card-custom-content">
+                            <div class="single-blog-items">
+                                <div class="single-blog">
+                                    <div class="blog-thums">
+                                        <div class="blog-date-content">
+                                            <div class="blog-dates">
+                                                <h4> {{ date('d', strtotime($data->created_at)) }} </h4>
+                                                <span>{{date('M',strtotime($data->created_at))}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="blog-contents">
+                                        <span class="blog-tag"> {!! get_blog_category_by_id($data->blog_categories_id,'link') !!} </span>
+                                        <h4 class="blog-title"> <a href="{{route('frontend.blog.single',$data->slug)}}" class="main-title"> {{$data->title  ?? __("Anonymous")}} </a> </h4>
+                                        <p> {!! Str::words(purify_html_raw($data->blog_content),45) !!} </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </div>
+    <!-- Blog Section -->
 
     <!-- menu bottom -->
     <div class="row mt-15">
@@ -196,9 +237,7 @@
                 </li>
                 <li class="nav-item">
 
-
-                    @php $campaign_rule = auth()->guard('web')->check() ? route('user.campaign.new') : route('user.login')  @endphp
-                    <a href="{{$campaign_rule}}" class="nav-link text-center">
+                    <a href="{{route('frontend.pre.payment.page')}}" class="nav-link text-center">
                         <!-- <svg width="41" height="40" viewBox="0 0 41 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <circle cx="20.5" cy="20" r="20" fill="#1DBF73"/>
                             <path d="M31.4467 15.285C31.4467 15.485 31.4467 15.685 31.4334 15.8716C29.3934 15.1116 26.9934 15.5783 25.3934 17.0183C24.3134 16.045 22.9134 15.4983 21.42 15.4983C18.14 15.4983 15.4734 18.1783 15.4734 21.485C15.4734 25.2583 17.3667 28.0183 19.18 29.805C19.0334 29.7917 18.9134 29.765 18.8067 29.725C15.3534 28.5383 7.63336 23.6317 7.63336 15.285C7.63336 11.605 10.5933 8.63165 14.2467 8.63165C16.42 8.63165 18.34 9.67164 19.54 11.285C20.7534 9.67164 22.6734 8.63165 24.8334 8.63165C28.4867 8.63165 31.4467 11.605 31.4467 15.285Z" fill="white"/>

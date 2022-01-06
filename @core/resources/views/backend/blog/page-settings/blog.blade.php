@@ -17,6 +17,14 @@
                         <form action="{{route('admin.blog.page.settings')}}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
+                                <label for="home_page_blog_area_title">{{__('Home Page Blog Area Title')}}</label>
+                                <input type="text" class="form-control"  id="home_page_blog_area_title" name="home_page_blog_area_title" value="{{get_static_option('home_page_blog_area_title')}}" placeholder="{{__('Blog Title')}}">
+                            </div>
+                            <div class="form-group">
+                                <label for="home_page_blog_area_subtitle">{{__('Home Page Blog Area Subtitle')}}</label>
+                                <input type="text" class="form-control"  id="home_page_blog_area_subtitle" name="home_page_blog_area_subtitle" value="{{get_static_option('home_page_blog_area_subtitle')}}" placeholder="{{__('Blog Subtitle')}}">
+                            </div>
+                            <div class="form-group">
                                 <label for="blog_page_read_more_btn_text">{{__('Blog Read More Text')}}</label>
                                 <input type="text" class="form-control"  id="blog_page_read_more_btn_text" name="blog_page_read_more_btn_text" value="{{get_static_option('blog_page_read_more_btn_text')}}" placeholder="{{__('Blog Read More Text')}}">
                             </div>

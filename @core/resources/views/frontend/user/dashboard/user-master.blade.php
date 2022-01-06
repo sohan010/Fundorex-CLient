@@ -12,7 +12,6 @@
                     <div class="img-circle float-start">
                         {!! render_image_markup_by_attachment_id( optional(Auth::guard('web')->user())->image) !!}
                     </div>
-{{--                    <img src="{{asset('assets/frontend/img/user-profile.png')}}" class="img-circle float-start" alt="Donasi - Donatur" width="70">--}}
                     <span class="float-start"><span class="statusDonatur">{{ optional(Auth::guard('web')->user())->name }}</span>
                 </div>
             </div>
@@ -23,10 +22,9 @@
         <div class="row mb-25">
             <div class="col-xl-12 col-lg-12 col-md-12 col-12 mx-auto wrapSaldo">
                 <div class="saldo p-2">
-                    <!-- <img src="img/gopay-saldo.png" class="img-fluid float-start gopayLogo" alt="Donasi - Donatur" width="50"> -->
 
                     <span class="float-start saldoText">Saldo anda</span><br><span class="jumlahSaldo">Rp 0</span>
-                    <a href="" class="btn btn-success"><i class="bi bi-plus-lg plus-lg-icon"></i> Isi saldo</a>
+                    <a href="" class="btn btn-success"> Isi saldo</a>
                     <a href="{{url('/')}}" class="btn btn-warning" target="_blank"> {{__('Home')}}</a>
                 </div>
             </div>
@@ -38,22 +36,22 @@
         <div class="row">
             <div class="col-xl-12 col-lg-12 col-md-12 col-12 mx-auto menuProfile">
                 <ul>
-                    <li><a href="{{route('user.home')}}"><img src="{{asset('assets/frontend/img/pengaturan.png')}}" class="img-fluid" alt="Donasi - Profile"> {{__('Dashboard')}}
-                    <i class="bi bi-chevron-right chevron-right-icon float-end pr-25"></i></a></li>
+                    <li><a href="{{route('user.home')}}"><img src="{{asset('assets/frontend/img/pengaturan.png')}}" class="img-fluid" alt="Donasi - Profile"> {{__('Dashboard')}}</a></li>
 
                     @if(!empty(get_static_option('donations_module_status')))
                     <li><a href="{{route('user.home.donations')}}"><img src="{{asset('assets/frontend/img/faq.png')}}" class="img-fluid" alt="Donasi - Profile">
-                            {{__('All ')}} {{get_static_option('donation_page_name')}} <i class="bi bi-chevron-right chevron-right-icon float-end pr-25"></i></a>
+                            {{__('All ')}} {{get_static_option('donation_page_name')}} </a>
                     </li>
                     @endif
 
+                    @if(Auth::guard('web')->user()->user_info_verified == 1)
                     <li><a href="{{route('user.campaign.all')}}"><img src="{{asset('assets/frontend/img/hubungi.png')}}" class="img-fluid"
-                         alt="Donasi - Profile"> {{__('Campaign List')}}<i class="bi bi-chevron-right chevron-right-icon float-end pr-25"></i></a>
+                         alt="Donasi - Profile"> {{__('Campaign List')}}</a>
                     </li>
-
                     <li><a href="{{ route('user.campaign.log.withdraw') }}"><img src="{{asset('assets/frontend/img/tentang.png')}}" class="img-fluid" alt="Donasi-Profile">
-                    {{__('Withdraw Logs')}}<i class="bi bi-chevron-right chevron-right-icon float-end pr-25"></i></a>
+                    {{__('Withdraw Logs')}}</a>
                     </li>
+                    @endif
 
                     <li><a href="{{route('user.home.support.tickets')}}"><img src="{{asset('assets/frontend/img/pengaturan.png')}}"
                      class="img-fluid " alt="Donasi - Profile">
@@ -63,6 +61,17 @@
                     <li><a href="{{route('user.home.edit.profile')}}"><img src="{{asset('assets/frontend/img/pengaturan.png')}}" class="img-fluid" alt="Donasi - Profile"> {{__('Edit Profile')}}</a></li>
                     <li><a href="{{route('user.home.change.password')}}"><img src="{{asset('assets/frontend/img/pengaturan.png')}}" class="img-fluid " alt="Donasi - Profile"> {{__('Change Password')}}</a></li>
                     <li><a href="{{ route('frontend.user.logout') }}"><img src="{{asset('assets/frontend/img/keluar.png')}}" class="img-fluid d-inline-block pr-2" alt="Donasi - Profile">{{__('Logout')}}</a></li>
+                    <li>
+                    @if(Auth::guard('web')->user()->user_info_verified == 0)
+                        @if(!request()->routeIs('user.dashboard.verify.info.page'))
+                        <div class="alert alert-warning ">
+                            <h3 class="text-center">{{__('Please Verify your KYC Information (For Campaign)')}}</h3>
+                           <h6 class="text-center"> <a class="btn btn-primary btn-sm text-white" href="{{route('user.dashboard.verify.info.page')}}">{{__('Verify Now')}}</a></h6>
+                        </div>
+                        @endif
+                     @endif
+                    </li>
+
                 </ul>
             </div>
         </div>

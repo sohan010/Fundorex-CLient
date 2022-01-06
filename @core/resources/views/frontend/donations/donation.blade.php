@@ -23,7 +23,7 @@
                             {!! render_image_markup_by_attachment_id($data->image) !!}
                             <div class="card-custom-content">
                             <a href="{{route('frontend.donations.single',$data->slug)}}" class="main-title"><span class="judulCampaignMendesak">{{$data->title ?? __('No Title')}}</span></a>
-                            <p>Terkumpul</p>
+
                             <div class="progress-content">
                             <span class="padding-progressbar">
                                 <div class="progress">
@@ -43,7 +43,7 @@
                                 </div>
                             </div>
 
-                            <div class="footer-CampaignMendesak"><span class="text-start">1000 donatur</span><span class="text-end">10 hari lagi</span></div>
+
                         </div>
                         </div>
                     </div>

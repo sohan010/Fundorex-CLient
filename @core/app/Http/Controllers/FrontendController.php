@@ -64,6 +64,7 @@ class FrontendController extends Controller
         $featured_causes = Cause::where(['status' => 'publish','featured' => 'on'])->inRandomOrder()->get();
         $all_donation_category = CauseCategory::where(['status' => 'publish'])->get();
         $banner = Banner::first();
+        $all_blog = Blog::where([ 'status' => 'publish'])->orderBy('id', 'desc')->take(get_static_option('blog_page_item'))->get();
 
         //make a function to call all static option by home page
         $static_field_data = StaticOption::whereIn('option_name',HomePageStaticSettings::get_home_field(get_static_option('home_page_variant')))->get()->mapWithKeys(function ($item) {
@@ -80,6 +81,7 @@ class FrontendController extends Controller
             'featured_causes' => $featured_causes,
             'all_client_area' => $all_client_area,
             'banner' => $banner,
+            'all_blog' => $all_blog,
         ]);
     }
 
@@ -591,6 +593,13 @@ class FrontendController extends Controller
     public function user_logout(){
         Auth::guard('web')->logout();
         return redirect()->route('user.login');
+    }
+
+    public function prepayment_page()
+    {
+        $all_donation = Cause::where(['status' => 'publish'])->get();
+        return view('frontend.donations.pre-payment-page',compact('all_donation'));
+
     }
 
 

@@ -24,6 +24,7 @@ use App\SupportTicket;
 use App\SupportTicketMessage;
 use App\User;
 use App\DonationWithdraw;
+use App\UserVerify;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -496,10 +497,43 @@ class UserDashboardController extends Controller
             $ticket_info->attachment = $file_name;
             $ticket_info->save();
         }
-
         //send mail to user
         event(new SupportMessage($ticket_info));
-
         return back()->with(FlashMsg::item_update(__('Message send')));
+    }
+
+    public function verify_info()
+    {
+        return view('frontend.user.dashboard.verify-user');
+    }
+
+    public function verify_info_store(Request $request)
+    {
+
+        $this->validate($request, [
+            'name' => 'required|string',
+            'date_of_birth' => 'required|string',
+            'family_card_photo' => 'required|max:5000',
+            'selfie_photo' => 'required|max:5000',
+            'selfie_with_family_card_photo' => 'required|max:5000',
+        ],[
+            'family_card_photo.max'=> __('Image must be less than 5 mb'),
+            'selfie_photo.max'=>  __('Image must be less than 5 mb'),
+            'selfie_with_family_card_photo.max'=>  __('Image must be less than 5 mb')
+        ]);
+
+        UserVerify::create([
+            'user_id'=> $request->user_id,
+            'name'=> $request->name,
+            'date_of_birth'=> $request->date_of_birth,
+            'family_card_photo'=> $request->family_card_photo,
+            'selfie_photo'=> $request->selfie_photo,
+            'selfie_with_family_card_photo'=> $request->selfie_with_family_card_photo,
+        ]);
+
+        User::where('id',$request->user_id)->update(['user_info_verified'=>1]);
+
+        return redirect()->route('user.campaign.all')->with(FlashMsg::item_new(__('Your kyc document submited now you can create campaign and withdraw..!')));
+
     }
 }

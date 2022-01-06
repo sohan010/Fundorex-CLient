@@ -13,6 +13,9 @@
 
 
     <div class="row pl-25 pr-15">
+       <div class="col-md-12">
+           <a class="btn btn-info mt-3" href="{{url('/')}}">{{__('Go Home')}}</a>
+       </div>
         <div class="col-xl-12 col-lg-12 col-md-12 col-12 mx-auto CampaignMendesak pt-4">
             <div class="scrolling-wrapper row mt-4 pb-4 pt-2 contentResponsive">
 
@@ -26,14 +29,11 @@
                     <div class="col-xl-4 col-lg-4 col-md-4 col-6 float-start p-3px">
                         <div class="card">
                             {!! render_image_markup_by_attachment_id($data->image) !!}
-                            <a href="{{route('frontend.donations.single',$data->slug)}}"><span class="judulCampaignMendesak">{{$data->title ?? __('No Title')}}</span></a>
-                            <p>Terkumpul</p>
+                            <div class="card-custom-content">
+                            <a href="{{route('frontend.donations.single',$data->slug)}}" class="main-title"><span class="judulCampaignMendesak">{{$data->title ?? __('No Title')}}</span></a>
+
                             <div class="progress-content">
-                            <span class="padding-progressbar">
-                                <div class="progress">
-                                    <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                            </span>
+
 
                                 <div class="progress-item">
                                     <div class="single-progressbar">
@@ -47,8 +47,8 @@
                                 </div>
                             </div>
 
-                            <div class="footer-CampaignMendesak"><span class="text-start">1000 donatur</span><span class="text-end">10 hari lagi</span></div>
                         </div>
+                    </div>
                     </div>
                 @endforeach
 

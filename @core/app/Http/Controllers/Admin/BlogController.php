@@ -255,7 +255,7 @@ class BlogController extends Controller
             update_static_option($recent_post_title, $request->$recent_post_title);
             update_static_option($tags_title, $request->$tags_title);
 
-        update_static_option('blog_single_page_recent_post_item',$request->blog_single_page_recent_post_item);
+            update_static_option('blog_single_page_recent_post_item',$request->blog_single_page_recent_post_item);
 
         return redirect()->back()->with([
             'msg' => __('Settings Update Success...'),
@@ -267,7 +267,9 @@ class BlogController extends Controller
 
         $this->validate($request,[
             'blog_page_recent_post_widget_items' => 'nullable|string|max:191',
-            'blog_page_item' => 'nullable|string|max:191'
+            'blog_page_item' => 'nullable|string|max:191',
+            'home_page_blog_area_title' => 'nullable|string|max:191',
+            'home_page_blog_area_subtitle' => 'nullable|string|max:191'
         ]);
 
 
@@ -275,11 +277,14 @@ class BlogController extends Controller
                 'blog_page_read_more_btn_text' => 'nullable|string',
             ]);
             $read_more_btn_text = 'blog_page_read_more_btn_text';
+            $blog_title = 'home_page_blog_area_title';
+            $blog_subtitle = 'home_page_blog_area_subtitle';
             update_static_option($read_more_btn_text, $request->$read_more_btn_text);
+            update_static_option($blog_title, $request->$blog_title);
+            update_static_option($blog_subtitle, $request->$blog_subtitle);
 
-
-        update_static_option('blog_page_item',$request->blog_page_item);
-        update_static_option('blog_page_recent_post_widget_items',$request->blog_page_recent_post_widget_items);
+            update_static_option('blog_page_item',$request->blog_page_item);
+            update_static_option('blog_page_recent_post_widget_items',$request->blog_page_recent_post_widget_items);
 
         return redirect()->back()->with([
             'msg' => __('Settings Update Success...'),

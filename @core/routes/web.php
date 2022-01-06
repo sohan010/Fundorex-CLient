@@ -198,7 +198,7 @@ Route::get('/'.$success_story_page_slug.'-category/{id}/{any?}','FrontendControl
 
 
 //Client New Required Routes
-
+Route::get('/pre-payment-page','FrontendController@prepayment_page')->name('frontend.pre.payment.page');
 
 
 //Newsletter
@@ -224,7 +224,6 @@ Route::post('/contact-message','FrontendFormController@send_contact_message')->n
     Route::get('/paystack/callback', 'PaymentLogController@paystack_callback')->name('frontend.paystack.callback');
     Route::get('/flutterwave/callback', 'PaymentLogController@flutterwave_callback')->name('frontend.flutterwave.callback');
     Route::get('/mollie/callback', 'PaymentLogController@mollie_webhook')->name('frontend.mollie.webhook');
-
 
 /*----------------------------------------------------------------------------------------------------------------------------
 | BLOG AREA FRONTEND ROUTES
@@ -260,6 +259,9 @@ Route::post('/contact-message','FrontendFormController@send_contact_message')->n
         Route::post('support-ticket/priority-change', 'UserDashboardController@support_ticket_priority_change')->name('user.dashboard.support.ticket.priority.change');
         Route::post('support-ticket/status-change', 'UserDashboardController@support_ticket_status_change')->name('user.dashboard.support.ticket.status.change');
         Route::post('support-ticket/message', 'UserDashboardController@support_ticket_message')->name('user.dashboard.support.ticket.message');
+
+        Route::get('verify-info', 'UserDashboardController@verify_info')->name('user.dashboard.verify.info.page');
+        Route::post('verify-info/store', 'UserDashboardController@verify_info_store')->name('user.dashboard.verify.info.store');
 
         /* -----------------------------------------------------
         |   USER CAMPAIGN ROUTES
